@@ -1,6 +1,8 @@
-import { CartButton } from '@zocom/cartbutton'
+import './style.scss';
 
-export function Menupage() {
+import { CartButton } from '@zocom/cartbutton';
+
+export const Menupage = () => {
   return (
     <section>
       <h1>HEJ!</h1>
