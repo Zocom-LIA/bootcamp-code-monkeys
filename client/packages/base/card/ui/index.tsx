@@ -1,5 +1,6 @@
-import React from "react";
+/* eslint-disable react-refresh/only-export-components */
 import { Button } from "@zocom/button";
+import './style.scss';
 
 export enum CardType {
   "MENU" = "menu",
@@ -18,7 +19,7 @@ type CardProps = {
     sauces?: {
       name: string;
       price: number;
-      desc?: string
+      desc?: string;
     }[];
   };
 };
@@ -28,25 +29,31 @@ export const Card = ({
   onClick,
   state,
 }: CardProps) => {
-  console.log(name)
   return (
-    <article>
-      <section>
+    <article className="card">
+      <section className="card__top">
         <h3>{name}</h3>
-        <aside>...........</aside>
-        <span>{price} SEK</span>
+        <aside></aside>
+        <span>{`${price} SEK`}</span>
       </section>
-      {state === CardType.MENU && 
-      ingredients ? 
-      <p>{ingredients?.join(", ")}</p> :
-        (sauces &&
-        sauces.map((sauce) => (
-          <Button key={sauce.name} onClick={() => console.log("hello")}>
-            {sauce.name}
-          </Button>
-        )))}
-      {state === CardType.CART && <></>}
-      <p></p>
+      <section className="card__bottom">
+        {state === CardType.MENU ? (
+          ingredients ? (
+            <p>{ingredients?.join(", ")}</p>
+          ) : (
+            sauces &&
+            sauces?.map((sauce) => (
+              <Button key={sauce.name} onClick={() => console.log("hello")}>
+                {sauce.name}
+              </Button>
+            ))
+          )
+        ) : state === CardType.CART ? (
+          <></>
+        ) : (
+          <></>
+        )}
+      </section>
     </article>
   );
 };
