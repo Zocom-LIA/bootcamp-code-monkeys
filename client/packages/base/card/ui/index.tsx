@@ -15,18 +15,20 @@ type CardProps = {
     price?: number;
     ingredients?: string[];
     amount?: number;
-    dip?: {
+    sauces?: {
       name: string;
       price: number;
+      desc?: string
     }[];
   };
 };
 
 export const Card = ({
-  props: { name, price, ingredients, amount, dip },
+  props: { name, price, ingredients, amount, sauces },
   onClick,
   state,
 }: CardProps) => {
+  console.log(name)
   return (
     <article>
       <section>
@@ -34,16 +36,17 @@ export const Card = ({
         <aside>...........</aside>
         <span>{price} SEK</span>
       </section>
-      {state === CardType.MENU && <p>{ingredients?.join(", ")}</p>}
-      {state === CardType.SAUCE &&
-        dip &&
-        dip.map((sauce) => (
+      {state === CardType.MENU && 
+      ingredients ? 
+      <p>{ingredients?.join(", ")}</p> :
+        (sauces &&
+        sauces.map((sauce) => (
           <Button key={sauce.name} onClick={() => console.log("hello")}>
             {sauce.name}
           </Button>
-        ))}
+        )))}
       {state === CardType.CART && <></>}
-      <p>{state}</p>
+      <p></p>
     </article>
   );
 };
