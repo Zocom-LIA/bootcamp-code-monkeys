@@ -1,7 +1,26 @@
-import './style.scss';
+import "./style.scss";
+import React, { ReactNode } from "react";
 
-export function Button() {
-  return (
-    <div>index</div>
-  )
+export enum ButtonType {
+  "REGULAR" = "regular",
+  "CART" = "cart",
+  "ROUND" = "round",
 }
+
+type ButtonProps = {
+  children: ReactNode | ReactNode[];
+  type?: ButtonType;
+  onClick: () => void;
+};
+
+export const Button = ({
+  children,
+  type = ButtonType.REGULAR,
+  onClick,
+}: ButtonProps) => {
+  return (
+    <button className={`button__${type}`} onClick={() => onClick()}>
+      {children}
+    </button>
+  );
+};
