@@ -13,7 +13,9 @@ $fzBase: 16px;
 
 @mixin fontSizeSmall {
     font-size: calc($fzBase * 0.875);
+    font-weight: 500;
     line-height: 100%;
+    text-transform: lowercase;
 }
 
 @mixin fontSizeRegular {
@@ -23,20 +25,28 @@ $fzBase: 16px;
 
 @mixin fontSizeBig {
     font-size: calc($fzBase * 1.375);
+    font-weight: 700;
     line-height: 160%;
+    text-transform: uppercase;
 }
 
 @mixin fontSizeBigger {
     font-size: calc($fzBase * 1.5);
+    font-weight: 700;
     line-height: 180%;
+    text-transform: uppercase;
 }
 
 @mixin fontSizeHeadingRegular {
     font-size: calc($fzBase * 2);
+    font-weight: 700;
     line-height: 240%;
+    text-transform: uppercase;
 }
 
 @mixin fontSizeHeadingBig {
     font-size: calc($fzBase * 2.625);
+    font-weight: 700;
     line-height: 315%;
+    text-transform: uppercase;
 }

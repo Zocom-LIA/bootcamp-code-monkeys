@@ -1,0 +1,39 @@
+@use "@zocom/styles" as *;
+
+@mixin buttonStyles($style, $color) {
+  transition: all 0.2s ease;
+  padding: $padding-nano $padding-sml;
+  color: $color;
+  &:hover,
+  &:focus-visible {
+    background-color: $primaryTextDark;
+    color: $primaryTextLight;
+  }
+
+  @if $style == "default" {
+    background-color: $buttonBg;
+  } @else if $style == "round" {
+    @include button(true);
+    background-color: $buttonBg;
+  } @else if $style == "cart" {
+    @include button(true);
+    background-color: $alertBg;
+  }
+}
+
+button {
+  border-radius: $radiusRegular;
+  &.button {
+    &__regular {
+      &--default {
+        @include buttonStyles(default, white);
+      }
+      &--round {
+        @include buttonStyles(round, black);
+      }
+      &--cart {
+        @include buttonStyles(cart, white);
+      }
+    }
+  }
+}

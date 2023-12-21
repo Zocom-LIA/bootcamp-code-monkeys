@@ -1,0 +1,25 @@
+@use '@zocom/styles' as *;
+
+.card {
+    &__top {
+        @include flex(row,space-between,baseline);
+        gap: $gap;
+        h3, span {
+            @include fontSizeBig;
+        }
+        aside {
+            flex: 1;
+            border-bottom: 1px dotted $primaryTextLight;
+        }
+    }
+    &__bottom {
+        & > * {
+            @include fontSizeSmall; 
+        }
+    }
+    &__bottom:has(.button__regular--default) {
+        @include grid(repeat(3, 1fr));
+        gap: $gap;
+        padding: $padding $padding-nano;
+    }
+}
