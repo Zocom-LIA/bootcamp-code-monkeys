@@ -1,13 +1,19 @@
-import axios from 'axios';
-import { WontonTypes } from '@zocom/types'
+import axios from "axios";
+import { WontonTypes } from "@zocom/types";
 
 type MenuApiResponse = {
-    success: boolean;
-    menu: WontonTypes[];
-}
-
+  success: boolean;
+  menu: WontonTypes[];
+};
 
 export function getMenu(): Promise<MenuApiResponse> {
-    return axios.get<MenuApiResponse>("https://0i6fkfbg0e.execute-api.eu-north-1.amazonaws.com/api/menu")
+  return axios
+    .get<MenuApiResponse>(
+      "https://0i6fkfbg0e.execute-api.eu-north-1.amazonaws.com/api/menu"
+    )
     .then((res) => res.data);
+}
+
+export function wait(duration: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, duration));
 }

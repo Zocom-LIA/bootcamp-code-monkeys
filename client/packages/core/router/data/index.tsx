@@ -2,7 +2,6 @@ import {
     createBrowserRouter,
     RouterProvider
 } from 'react-router-dom';
-import React from 'react';
 import { Menupage } from '@zocom/menupage';
 
 const router = createBrowserRouter([

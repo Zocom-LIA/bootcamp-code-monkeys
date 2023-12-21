@@ -1,0 +1,15 @@
+@use '@zocom/styles' as *;
+
+.header {
+    @include flex(row, space-between, center);
+    padding-block: $padding;
+
+    &__logo {
+        @include logoSmall;
+        background: url('./assets/logo-white.svg'), center/cover no-repeat;
+    }
+    &__cart {
+        position: relative;
+        isolation: isolate;
+    }
+}

@@ -27,6 +27,8 @@ $shadow-large: 0px 0px 24px 0px hsla(0, 0%, 0%, 0.16);
 
 $base: 16px;
 
+$logo-sml: calc($base * 4);
+
 $padding-huge: calc($base * 2);
 $padding-large: calc($base * 1.5);
 $padding: $base;
@@ -53,6 +55,11 @@ $desktopBreakpoint: 1280px;
 $widescreenBreakpoint: 1600px;
 
 /* HELPERS */
+
+@mixin logoSmall {
+    width: $logo-sml;
+    aspect-ratio: 1;
+}
 
 @mixin center {
     display: grid;
