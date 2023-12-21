@@ -1,10 +1,10 @@
-import { Menupage }from '@zocom/menupage';
+import { AppRoutes }from '@zocom/router';
 
 export function App() {
 
   return (
     <>
-      <Menupage />
+      <AppRoutes />
     </>
   )
 }
