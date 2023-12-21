@@ -19,7 +19,7 @@ export const Menupage = () => {
 
   return (
     <section className="menu">
-      <h2 className="menu__title">Menu</h2>
+      <h2 className="menu__title">Meny</h2>
       {menuItems &&
         menuItems.map((wonton, index) => (
           <Card props={wonton} key={index} state={CardType.MENU} />
