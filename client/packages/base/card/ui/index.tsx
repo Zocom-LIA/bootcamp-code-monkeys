@@ -1,31 +1,24 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Button } from "@zocom/button";
+import { Button } from '@zocom/button';
 import './style.scss';
+import { WontonTypes } from '@zocom/types';
 
 export enum CardType {
-  "MENU" = "menu",
-  "SAUCE" = "sauce",
-  "CART" = "cart",
+  'MENU' = 'menu',
+  'SAUCE' = 'sauce',
+  'CART' = 'cart',
 }
 
 type CardProps = {
   onClick?: () => void;
   state: CardType;
-  props: {
-    name?: string;
-    price?: number;
-    ingredients?: string[];
-    amount?: number;
-    sauces?: {
-      name: string;
-      price: number;
-      desc?: string;
-    }[];
-  };
+  props: WontonTypes;
 };
 
+//Add amount
+
 export const Card = ({
-  props: { name, price, ingredients, amount, sauces },
+  props: { name, price, ingredients, sauces },
   onClick,
   state,
 }: CardProps) => {
@@ -39,11 +32,11 @@ export const Card = ({
       <section className="card__bottom">
         {state === CardType.MENU ? (
           ingredients ? (
-            <p>{ingredients?.join(", ")}</p>
+            <p>{ingredients?.join(', ')}</p>
           ) : (
             sauces &&
             sauces?.map((sauce) => (
-              <Button key={sauce.name} onClick={() => console.log("hello")}>
+              <Button key={sauce.name} onClick={() => console.log('hello')}>
                 {sauce.name}
               </Button>
             ))
