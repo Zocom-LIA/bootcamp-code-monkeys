@@ -1,5 +1,5 @@
 import "./style.scss";
-import { RenderItems } from "../feature/RenderItems";
+import { RenderItems } from "./feature/RenderItems";
 import { Header } from '@zocom/header';
 
 export const Menupage = () => {
