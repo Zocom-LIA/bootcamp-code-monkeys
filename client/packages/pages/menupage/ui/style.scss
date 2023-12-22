@@ -4,7 +4,6 @@ body:has(.menu) {
     background: url('./assets/forrest.png'), lightgray 50% / cover no-repeat;
     background-color: $menuBg;
     padding: $padding $padding-large;
-    @include center;
 }
 .menu {
     @include center;
