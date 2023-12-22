@@ -1,0 +1,90 @@
+/* COLORS */
+
+$primaryTextLight: hsla(43, 15%, 95%, 0.94);
+$primaryTextDark: hsla(0, 4%, 20%, 1);
+
+$secondaryTextLight: hsla(0, 0%, 93%, 1);
+$secondaryTextDark: hsla(0, 4%, 36%, 1);
+
+$menuBg: hsla(160, 48%, 70%, 1);
+$accentBg: hsla(160, 34%, 42%, 1);
+$alertBg: hsla(0, 79%, 63%, 1);
+
+$staffBgPrep: hsla(0, 67%, 95%, 1);
+$staffBgDone: hsla(160, 80%, 92%, 1);
+
+$buttonBg: hsla(48, 15%, 94%, 0.24);
+
+/* EFFECTS */
+
+$radiusRegular: 4px;
+
+$shadow-sml: 1px 1px 2px 0px hsla(0, 0%, 0%, 0.25);
+$shadow-medium: 0px 0px 16px 0px hsla(0, 0%, 0%, 0.16);
+$shadow-large: 0px 0px 24px 0px hsla(0, 0%, 0%, 0.16);
+
+/* PADDING, MARGIN, GAP */
+
+$base: 16px;
+
+$logo-sml: calc($base * 4);
+
+$padding-huge: calc($base * 2);
+$padding-large: calc($base * 1.5);
+$padding: $base;
+$padding-sml: calc($base / 2);
+$padding-nano: calc($base / 4);
+
+$margin-huge: calc($base * 2);
+$margin-large: calc($base * 1.5);
+$margin: $base;
+$margin-sml: calc($base / 2);
+$margin-nano: calc($base / 4);
+
+$gap-huge: calc($base * 2);
+$gap-large: calc($base * 1.5);
+$gap: $base;
+$gap-sml: calc($base / 2);
+$gap-nano: calc($base / 4);
+
+/* RESPONSIVE */
+
+$mobBreakpoint: 480px;
+$tabletBreakpoint: 640px;
+$desktopBreakpoint: 1280px;
+$widescreenBreakpoint: 1600px;
+
+/* HELPERS */
+
+@mixin logoSmall {
+    width: $logo-sml;
+    aspect-ratio: 1;
+}
+
+@mixin center {
+    display: grid;
+    place-content: center;
+}
+
+@mixin flex($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin grid($columns) {
+    display: grid;
+    grid-template-columns: $columns;
+    grid-auto-rows: auto;
+}
+
+/* BUTTON */
+
+@mixin button($circle: false) {
+    @if $circle {
+        border-radius: 50%;
+    } @else {
+        border-radius: $radiusRegular;
+    }
+}

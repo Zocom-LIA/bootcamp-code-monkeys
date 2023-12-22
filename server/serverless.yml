@@ -1,0 +1,39 @@
+service: server
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  profile: Yumyumgimmisum
+  region: eu-north-1
+  iam:
+    role: arn:aws:iam::277117890175:role/Yumyumadminrole
+  deploymentMethod: direct
+
+plugins:
+  - serverless-webpack
+
+package:
+  individually: true
+
+functions:
+  api:
+    handler: functions/menuFunctions/getMenu/index.handler
+    events:
+      - httpApi:
+          path: /api/menu
+          method: GET
+
+resources:
+  Resources: 
+    menudb:
+      Type: AWS::DynamoDB::Table
+      Properties: 
+        TableName: menudb
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema: 
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST

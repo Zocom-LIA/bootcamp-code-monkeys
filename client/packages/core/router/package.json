@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/router",
+    "main": "./index.ts"
+}

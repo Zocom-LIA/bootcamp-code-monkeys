@@ -61,6 +61,43 @@
             "lime"
          ],
          "price":9
+      },
+      {
+         "name":"Dipsås",
+         "desc":"Stark och söt dip från Thailänska höglandet.",
+         "sauces": [
+            {
+               "name":"Sweet Chili",
+               "desc":"Stark och söt dip från Thailänska höglandet.",
+               "price":19
+            },
+            {
+               "name":"Sweet n Sour",
+               "desc":"Klassiska sötsura dipsåsen från Kina.",
+               "price":19
+            },
+            {
+               "name":"Guacamole",
+               "desc":"Avocado, tomat och kryddor i optimal kombination.",
+               "price":19
+            },
+            {
+               "name":"Wonton Standard",
+               "desc":"Smaksatt olja med soya, chili, vitlök & ingefära.",
+               "price":19
+            },
+            {
+               "name":"Hot Mango",
+               "desc":"Kryddstark och söt chunky mangodip.",
+               "price":19
+            },
+            {
+               "name":"Chili Mayo",
+               "desc":"Egengjord majonäs smaksatt med chili.",
+               "price":19
+            }
+         ],
+         "price":19
       }
    ],
    "dip":[
