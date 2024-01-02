@@ -1,6 +1,6 @@
 import { Button, ButtonType } from "@zocom/button";
 import { StyleTypes } from "@zocom/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useOrderStore } from "../../../../src/stores/OrderStore";
 
 export const CartButton = () => {
@@ -8,17 +8,22 @@ export const CartButton = () => {
   const [amount, setAmount] = useState(0);
   const { cart } = useOrderStore()
 
-  //Funktionen körs inte, var och när ska den köras och ligga? 
+  //Funktionen körs men räknar inte quantity korrekt.  
   //Fundera vidare i morgon. 
 function calcAmount() {
   console.log("In calcAmount")
-  let sum
-  for (let i = 0; i > cart.length; i++) {
-    sum = amount + cart[i].quantity
-    setAmount(sum)
-    console.log("Amount" + amount)
+  let sum = 0
+  for (let i = 0; i < cart.length; i++) {
+    sum += cart[i].quantity
+    
   }
+  setAmount(sum)
+    console.log("Amount" + amount)
 }
+
+useEffect(() => {
+  calcAmount()
+}, [cart])
 
 
 
