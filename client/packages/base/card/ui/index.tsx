@@ -25,7 +25,7 @@ export const Card = ({
 }: CardProps) => {
   return (
     <article className="card">
-      <section className="card__top">
+      <section className="card__top" onClick={onClick}>
         <h3>{name}</h3>
         <aside></aside>
         <span>{`${price} SEK`}</span>
@@ -37,7 +37,7 @@ export const Card = ({
           ) : (
             sauces &&
             sauces?.map((sauce) => (
-              <Button key={sauce.name} onClick={() => console.log('hello')}>
+              <Button key={sauce.name} onClick={() => onClick}>
                 {sauce.name}
               </Button>
             ))
