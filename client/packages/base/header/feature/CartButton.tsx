@@ -1,7 +1,7 @@
 import { Button, ButtonType } from '@zocom/button';
 import { StyleTypes } from '@zocom/types';
 import { useEffect, useState } from 'react';
-import { useOrderStore } from '../../../../src/stores/OrderStore';
+import { useOrderStore } from '@zocom/orderstore';
 
 export const CartButton = () => {
   const openCart = () => {};

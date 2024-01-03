@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/orderstore",
+    "main": "./index.ts"
+}
