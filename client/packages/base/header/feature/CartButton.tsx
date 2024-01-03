@@ -1,10 +1,14 @@
-import { Button, ButtonType } from '@zocom/button';
-import { StyleTypes } from '@zocom/types';
-import { useEffect, useState } from 'react';
-import { useOrderStore } from '@zocom/orderstore';
+import { Button, ButtonType } from "@zocom/button";
+import { StyleTypes } from "@zocom/types";
+import { useEffect, useState } from "react";
+import { useOrderStore } from "@zocom/orderstore";
+import { useNavigate } from "react-router-dom";
 
 export const CartButton = () => {
-  const openCart = () => {};
+  const navigate = useNavigate();
+  const openCart = () => {
+    navigate("/cart");
+  };
   const [amount, setAmount] = useState(0);
   const { cart } = useOrderStore();
 

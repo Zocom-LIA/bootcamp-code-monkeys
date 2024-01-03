@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Button } from "@zocom/button";
+import { Button, ButtonType } from "@zocom/button";
 import "./style.scss";
 import { WontonTypes, Product } from "@zocom/types";
 import { useOrderStore } from "@zocom/orderstore";
@@ -77,9 +77,19 @@ export const Card = ({ props, state }: CardProps) => {
           )
         ) : state === CardType.CART ? (
           <>
-            <Button onClick={() => handleAddToCart(props)}>+</Button>
+            <Button
+              type={ButtonType.ROUND}
+              onClick={() => handleAddToCart(props)}
+            >
+              +
+            </Button>
             <p>{isProductType(props) && props.quantity}</p>
-            <Button onClick={() => handleAddToCart(props)}>-</Button>
+            <Button
+              type={ButtonType.ROUND}
+              onClick={() => handleAddToCart(props)}
+            >
+              -
+            </Button>
           </>
         ) : (
           <></>

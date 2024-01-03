@@ -1,6 +1,6 @@
 import "./style.scss";
 import { Header } from "@zocom/header";
-import React from "react";
+import { RenderItems } from "./feature/RenderItems";
 
 export const Myorderpage = () => {
   return (
@@ -9,6 +9,7 @@ export const Myorderpage = () => {
       <main>
         <section className="menu">
           <h2 className="menu__title">Cart</h2>
+          <RenderItems />
         </section>
       </main>
     </>
