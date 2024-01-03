@@ -19,13 +19,19 @@ type CardProps = {
 //Add amount
 
 export const Card = ({ props, state }: CardProps) => {
-  const { addToCart, updateCart, cart } = useOrderStore();
+  const {
+    addToCart,
+    increaseQuantity,
+    decreaseQuantity,
+    removeFromCart,
+    cart,
+  } = useOrderStore();
   // const { ingredients, name, price, sauces } = props;
 
   function handleAddToCart(product: WontonTypes) {
     const existingItem = cart.find((cartItem) => cartItem.id === product.id);
     if (existingItem) {
-      updateCart(existingItem);
+      increaseQuantity(existingItem);
     } else {
       const newProduct = {
         id: product.id,
@@ -35,10 +41,16 @@ export const Card = ({ props, state }: CardProps) => {
       };
       addToCart(newProduct);
     }
-
-    console.log("Cart", cart);
   }
 
+  function handleRemoveFromCart(product: WontonTypes | Product) {
+    if (isProductType(product)) {
+      decreaseQuantity(product);
+      if (product.quantity === 0) {
+        removeFromCart(product);
+      }
+    }
+  }
   function isWontonType(object: any): object is WontonTypes {
     return "ingredients" in object;
   }
@@ -86,7 +98,7 @@ export const Card = ({ props, state }: CardProps) => {
             <p>{isProductType(props) && props.quantity}</p>
             <Button
               type={ButtonType.ROUND}
-              onClick={() => handleAddToCart(props)}
+              onClick={() => handleRemoveFromCart(props)}
             >
               -
             </Button>
