@@ -1,31 +1,24 @@
-import { Button, ButtonType } from "@zocom/button";
-import { StyleTypes } from "@zocom/types";
-import { useEffect, useState } from "react";
-import { useOrderStore } from "../../../../src/stores/OrderStore";
+import { Button, ButtonType } from '@zocom/button';
+import { StyleTypes } from '@zocom/types';
+import { useEffect, useState } from 'react';
+import { useOrderStore } from '../../../../src/stores/OrderStore';
 
 export const CartButton = () => {
   const openCart = () => {};
   const [amount, setAmount] = useState(0);
-  const { cart } = useOrderStore()
+  const { cart } = useOrderStore();
 
-  //Funktionen körs men räknar inte quantity korrekt.  
-  //Fundera vidare i morgon. 
-function calcAmount() {
-  console.log("In calcAmount")
-  let sum = 0
-  for (let i = 0; i < cart.length; i++) {
-    sum += cart[i].quantity
-    
+  function calcAmount() {
+    let sum = 0;
+    for (let i = 0; i < cart.length; i++) {
+      sum += cart[i].quantity;
+    }
+    setAmount(sum);
   }
-  setAmount(sum)
-    console.log("Amount" + amount)
-}
 
-useEffect(() => {
-  calcAmount()
-}, [cart])
-
-
+  useEffect(() => {
+    calcAmount();
+  }, [cart]);
 
   return (
     <section className="header__cart">
@@ -46,12 +39,11 @@ useEffect(() => {
         </svg>
       </Button>
       <Button
-        children={amount}
         type={ButtonType.CART}
         style={StyleTypes.ALERT}
         onClick={() => openCart()}
       >
-        
+        {amount}
       </Button>
     </section>
   );
