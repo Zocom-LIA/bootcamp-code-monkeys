@@ -16,7 +16,6 @@ type OrderState = {
   increaseQuantity: (product: Product) => void;
   decreaseQuantity: (product: Product) => void;
   removeFromCart: (product: Product) => void;
-  calculateTotalPrice: (price: number) => void;
 };
 
 export const useOrderStore = create<OrderState>()((set) => ({
@@ -49,5 +48,4 @@ export const useOrderStore = create<OrderState>()((set) => ({
         cart: updatedCart,
       };
     }),
-  calculateTotalPrice: (price) => set({})
 }));
