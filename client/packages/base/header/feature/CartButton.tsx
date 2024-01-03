@@ -1,9 +1,25 @@
-import { Button, ButtonType } from "@zocom/button";
-import { StyleTypes } from "@zocom/types";
+import { Button, ButtonType } from '@zocom/button';
+import { StyleTypes } from '@zocom/types';
+import { useEffect, useState } from 'react';
+import { useOrderStore } from '../../../../src/stores/OrderStore';
 
 export const CartButton = () => {
   const openCart = () => {};
-  const setAmount = () => {};
+  const [amount, setAmount] = useState(0);
+  const { cart } = useOrderStore();
+
+  function calcAmount() {
+    let sum = 0;
+    for (let i = 0; i < cart.length; i++) {
+      sum += cart[i].quantity;
+    }
+    setAmount(sum);
+  }
+
+  useEffect(() => {
+    calcAmount();
+  }, [cart]);
+
   return (
     <section className="header__cart">
       <Button onClick={() => openCart()} type={ButtonType.CART}>
@@ -23,11 +39,11 @@ export const CartButton = () => {
         </svg>
       </Button>
       <Button
-        onClick={() => setAmount()}
         type={ButtonType.CART}
         style={StyleTypes.ALERT}
+        onClick={() => openCart()}
       >
-        0
+        {amount}
       </Button>
     </section>
   );
