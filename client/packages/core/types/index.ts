@@ -9,12 +9,19 @@ export enum StyleTypes {
 export type WontonTypes = {
   name: string;
   id: string;
-  desc: string;
+  desc?: string;
   ingredients?: string[];
   price: number;
   sauces?: {
+    id: string;
     name: string;
-    desc: string;
     price: number;
   }[];
 };
+
+export type Product = {
+    id: string;
+    name: string;
+    price: number;
+    quantity: number;
+  };
