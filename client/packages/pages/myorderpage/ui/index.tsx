@@ -25,7 +25,6 @@ export const Myorderpage = () => {
     const totalPrice = cart.reduce((sum, cartItem) => {
       return sum + cartItem.price * cartItem.quantity;
     }, 0);
-
     setTotal(totalPrice);
   }
 

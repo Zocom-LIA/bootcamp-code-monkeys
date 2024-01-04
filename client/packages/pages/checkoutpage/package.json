@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/checkoutpage",
+    "main": "./index.ts"
+  }

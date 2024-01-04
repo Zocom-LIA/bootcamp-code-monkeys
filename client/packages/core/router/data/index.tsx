@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Menupage } from "@zocom/menupage";
 import { Myorderpage } from "@zocom/myorderpage";
+import { Checkoutpage } from '@zocom/checkoutpage';
 
 const router = createBrowserRouter([
   {
@@ -11,17 +12,17 @@ const router = createBrowserRouter([
     path: "/cart",
     element: <Myorderpage />,
   },
-  // {
-  //     path: "/confirmation",
-  //     element: <Confirmation />
-  // },
+  {
+      path: "/checkout",
+      element: <Checkoutpage />
+  },
   // {
   //     path: "/receipt",
-  //     element: <Receipt />
+  //     element: <Receiptpage />
   // },
   // {
   //     path: "/staff/overview",
-  //     element: <Overview />
+  //     element: <Overviewpage />
   // },
   {
     path: "*",
