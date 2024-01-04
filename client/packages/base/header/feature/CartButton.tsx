@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useOrderStore } from "@zocom/orderstore";
 import { useNavigate } from "react-router-dom";
 
+
 export const CartButton = () => {
   const navigate = useNavigate();
   const openCart = () => {
@@ -42,13 +43,15 @@ export const CartButton = () => {
           />
         </svg>
       </Button>
-      <Button
+      
+        <Button
         type={ButtonType.CART}
         style={StyleTypes.ALERT}
         onClick={() => openCart()}
       >
         {amount}
       </Button>
+      
     </section>
   );
 };
