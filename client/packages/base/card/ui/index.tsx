@@ -16,8 +16,6 @@ type CardProps = {
   props: WontonTypes | Product;
 };
 
-//Add amount
-
 export const Card = ({ props, state }: CardProps) => {
   const {
     addToCart,
@@ -26,9 +24,8 @@ export const Card = ({ props, state }: CardProps) => {
     removeFromCart,
     cart,
   } = useOrderStore();
-  // const { ingredients, name, price, sauces } = props;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (props: WontonTypes | Product) => {
     if ("id" in props) {
       const existingItem = cart.find((cartItem) => cartItem.id === props.id);
       existingItem
@@ -57,11 +54,11 @@ export const Card = ({ props, state }: CardProps) => {
     <article className="card">
       <section
         className="card__top"
-        onClick={state === CardType.MENU ? handleAddToCart : undefined}
+        onClick={state === CardType.MENU ? () => handleAddToCart(props) : undefined}
       >
         <h3>{props.name}</h3>
         <aside></aside>
-        <span>{`${props.price} SEK`}</span>
+        <span>{`${isProductType(props) ? props.price * props.quantity : props.price}`} SEK</span>
       </section>
       <section className="card__bottom">
         {state === CardType.MENU ? (
@@ -70,7 +67,7 @@ export const Card = ({ props, state }: CardProps) => {
           ) : (
             isSauceType(props) &&
             props.sauces?.map((sauce) => (
-              <Button key={sauce.name} onClick={() => handleAddToCart()}>
+              <Button key={sauce.name} onClick={() => handleAddToCart(sauce)}>
                 {sauce.name}
               </Button>
             ))
@@ -80,7 +77,7 @@ export const Card = ({ props, state }: CardProps) => {
             <Button
               type={ButtonType.ROUND}
               style={StyleTypes.CART}
-              onClick={() => handleAddToCart()}
+              onClick={() => handleAddToCart(props)}
             >
               +
             </Button>
