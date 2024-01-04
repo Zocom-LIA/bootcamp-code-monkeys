@@ -5,7 +5,7 @@ import { Header } from "@zocom/header";
 export const Menupage = () => {
   return (
     <>
-      <Header />
+      <Header showLogo={true} />
       <main>
         <section className="menu">
           <h2 className="menu__title">Meny</h2>

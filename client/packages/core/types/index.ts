@@ -4,6 +4,7 @@ export enum StyleTypes {
   "LIGHT" = "light",
   "ACCENT" = "accent",
   "ALERT" = "alert",
+  "CART" = "cart",
 }
 
 export type WontonTypes = {
@@ -20,8 +21,8 @@ export type WontonTypes = {
 };
 
 export type Product = {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-  };
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+};

@@ -1,12 +1,18 @@
-import './style.scss';
-import { CartButton } from '../feature/CartButton';
+import "./style.scss";
+import { CartButton } from "../feature/CartButton";
+import { useNavigate } from "react-router-dom";
 
-export const Header = () => {
+type logoType = {
+  showLogo: boolean
+}
+
+export const Header = ({ showLogo }: logoType) => {
+  const navigate = useNavigate();
 
   return (
     <header className="header">
-      <figure className="header__logo"></figure>
-      <CartButton />
+      { showLogo ? <figure className="header__logo" onClick={() => navigate("/")}></figure>: null}
+      <CartButton  />
     </header>
   );
 };

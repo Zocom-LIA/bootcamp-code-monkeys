@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Button } from "@zocom/button";
 import "./style.scss";
-import { WontonTypes, Product } from "@zocom/types";
+import { Button, ButtonType } from "@zocom/button";
+import { WontonTypes, Product, StyleTypes } from "@zocom/types";
 import { useOrderStore } from "@zocom/orderstore";
 
 export enum CardType {
@@ -16,52 +16,49 @@ type CardProps = {
   props: WontonTypes | Product;
 };
 
-//Add amount
-
 export const Card = ({ props, state }: CardProps) => {
-  const { addToCart, updateCart, cart } = useOrderStore();
-  // const { ingredients, name, price, sauces } = props;
+  const {
+    addToCart,
+    increaseQuantity,
+    decreaseQuantity,
+    removeFromCart,
+    cart,
+  } = useOrderStore();
 
-  function handleAddToCart(product: WontonTypes) {
-    const existingItem = cart.find((cartItem) => cartItem.id === product.id);
-    if (existingItem) {
-      updateCart(existingItem);
-    } else {
-      const newProduct = {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        quantity: 1,
-      };
-      addToCart(newProduct);
+  const handleAddToCart = (props: WontonTypes | Product) => {
+    if ("id" in props) {
+      const existingItem = cart.find((cartItem) => cartItem.id === props.id);
+      existingItem
+        ? increaseQuantity(existingItem)
+        : addToCart({ ...props, quantity: 1 });
     }
+  };
 
-    console.log("Cart", cart);
-  }
+  const handleRemoveFromCart = () => {
+    if ("quantity" in props && "id" in props) {
+      decreaseQuantity(props);
+      props.quantity === 0 && removeFromCart(props);
+    }
+  };
 
-  function isWontonType(object: any): object is WontonTypes {
-    return "ingredients" in object;
-  }
+  const isWontonType = (object: WontonTypes | Product): object is WontonTypes =>
+    "ingredients" in object;
 
-  function isSauceType(object: any): object is WontonTypes {
-    return "sauces" in object;
-  }
+  const isSauceType = (object: WontonTypes | Product): object is WontonTypes =>
+    "sauces" in object;
 
-  function isProductType(object: any): object is Product {
-    return "quantity" in object;
-  }
+  const isProductType = (object: WontonTypes | Product): object is Product =>
+    "quantity" in object;
 
   return (
     <article className="card">
       <section
         className="card__top"
-        onClick={
-          state === CardType.MENU ? () => handleAddToCart(props) : undefined
-        }
+        onClick={state === CardType.MENU ? () => handleAddToCart(props) : undefined}
       >
         <h3>{props.name}</h3>
         <aside></aside>
-        <span>{`${props.price} SEK`}</span>
+        <span>{`${isProductType(props) ? props.price * props.quantity : props.price}`} SEK</span>
       </section>
       <section className="card__bottom">
         {state === CardType.MENU ? (
@@ -77,9 +74,21 @@ export const Card = ({ props, state }: CardProps) => {
           )
         ) : state === CardType.CART ? (
           <>
-            <Button onClick={() => handleAddToCart(props)}>+</Button>
-            <p>{isProductType(props) && props.quantity}</p>
-            <Button onClick={() => handleAddToCart(props)}>-</Button>
+            <Button
+              type={ButtonType.ROUND}
+              style={StyleTypes.CART}
+              onClick={() => handleAddToCart(props)}
+            >
+              +
+            </Button>
+            <p>{isProductType(props) && props.quantity} stycken</p>
+            <Button
+              type={ButtonType.ROUND}
+              style={StyleTypes.CART}
+              onClick={() => handleRemoveFromCart()}
+            >
+              -
+            </Button>
           </>
         ) : (
           <></>
