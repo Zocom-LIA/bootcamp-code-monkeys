@@ -26,3 +26,16 @@ export type Product = {
   price: number;
   quantity: number;
 };
+
+export type Order = {
+  id: string;
+  products: Product[];
+  orderStatus: string;
+  timeStamp?: Date;
+  totalPrice: number;
+};
+
+export type OrderApiResponse = {
+  success: boolean;
+  response?: Order | Order[];
+};
