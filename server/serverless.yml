@@ -29,6 +29,18 @@ functions:
       - httpApi:
           path: /api/order
           method: POST
+  getAllOrders:
+    handler: functions/orderFunctions/getAllOrders/index.handler
+    events:
+      - httpApi:
+          path: /api/orders
+          method: GET
+  getOrder:
+    handler: functions/orderFunctions/getOrder/index.handler
+    events:
+      - httpApi:
+          path: /api/order/{id}
+          method: GET
 
 resources:
   Resources: 
