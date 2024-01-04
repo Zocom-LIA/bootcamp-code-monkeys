@@ -8,6 +8,7 @@ export enum CardType {
   "MENU" = "menu",
   "SAUCE" = "sauce",
   "CART" = "cart",
+  "RECEIPT" = "receipt"
 }
 
 type CardProps = {
@@ -87,9 +88,12 @@ export const Card = ({ props, state }: CardProps) => {
               -
             </Button>
           </>
-        ) : (
-          <></>
-        )}
+        ) : state === CardType.RECEIPT ? (
+          <>
+           <p>{isProductType(props) && props.quantity} stycken</p></>
+        ) : 
+        <></>
+        }
       </section>
     </article>
   );
