@@ -1,18 +1,23 @@
 import "./style.scss";
-import { Header } from "@zocom/header";
-import { RenderItems } from "./feature/RenderItems";
-import { useOrderStore } from "@zocom/orderstore";
-import { useState, useEffect } from "react";
-import { Button, ButtonType } from "@zocom/button";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
+import { RenderItems } from "./feature/RenderItems";
+
+import { Header } from "@zocom/header";
+import { useOrderStore } from "@zocom/orderstore";
+import { Button, ButtonType } from "@zocom/button";
 import { StyleTypes } from "@zocom/types";
+import { addOrder } from '@zocom/myorderpage';
 
 export const Myorderpage = () => {
   const { cart } = useOrderStore();
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
+  const id = nanoid();
 
   const openCheckout = () => {
+    addOrder({ id: id, products: cart, totalPrice: total, orderStatus: "onGoing" });
     navigate('/checkout');
   }
 
