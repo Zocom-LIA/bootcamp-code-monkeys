@@ -37,5 +37,5 @@ export type Order = {
 
 export type OrderApiResponse = {
   success: boolean;
-  response?: Order | Order[];
+  order: Order;
 };

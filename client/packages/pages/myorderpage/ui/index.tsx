@@ -18,6 +18,7 @@ export const Myorderpage = () => {
 
   const openCheckout = () => {
     addOrder({ id: id, products: cart, totalPrice: total, orderStatus: "onGoing" });
+    localStorage.setItem("orderId", id);
     navigate('/checkout');
   }
 

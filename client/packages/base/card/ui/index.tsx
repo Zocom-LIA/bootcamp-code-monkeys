@@ -42,10 +42,7 @@ export const Card = ({ props, state }: CardProps) => {
   };
 
   const isWontonType = (object: WontonTypes | Product): object is WontonTypes =>
-    "ingredients" in object;
-
-  const isSauceType = (object: WontonTypes | Product): object is WontonTypes =>
-    "sauces" in object;
+    "ingredients" in object || "sauces" in object;
 
   const isProductType = (object: WontonTypes | Product): object is Product =>
     "quantity" in object;
@@ -65,7 +62,7 @@ export const Card = ({ props, state }: CardProps) => {
           isWontonType(props) && props.ingredients ? (
             <p>{props.ingredients?.join(", ")}</p>
           ) : (
-            isSauceType(props) &&
+            isWontonType(props) &&
             props.sauces?.map((sauce) => (
               <Button key={sauce.name} onClick={() => handleAddToCart(sauce)}>
                 {sauce.name}
