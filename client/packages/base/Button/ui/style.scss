@@ -22,6 +22,8 @@
     right: -$margin-sml;
   } @else if $style == "dark" {
     background-color: $buttonDarkBg;
+  } @else if $style == "border" {
+    border: 1px solid $primaryTextLight;
   }
 }
 
@@ -42,7 +44,7 @@ button {
     &__cart {
       &--default {
         background-color: $primaryTextLight;
-        @include logoSmall;
+        @include logoSmall($logo-sml, 1);
         box-shadow: $shadow-medium;
       }
       &--alert {
@@ -53,6 +55,11 @@ button {
         @include fontSizeBigger;
         padding-block: $padding;
         text-transform: uppercase;
+      }
+      &--border {
+        @include buttonStyles(border, white);
+        @include fontSizeBigger;
+        padding-block: $padding;
       }
     }
     &__round {

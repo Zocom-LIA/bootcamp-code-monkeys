@@ -5,7 +5,7 @@
     padding-block: $padding;
 
     &__logo {
-        @include logoSmall;
+        @include logoSmall($logo-sml, 1);
         background: url('./assets/logo-white.svg'), center/cover no-repeat;
     }
     &__cart {

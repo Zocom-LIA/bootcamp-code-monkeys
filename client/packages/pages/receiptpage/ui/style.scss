@@ -1,0 +1,86 @@
+@use "@zocom/styles" as *;
+
+body:has(.receipt) {
+  background-color: $secondaryTextDark;
+  padding-inline: $padding;
+
+  .header__cart {
+    display: none;
+  }
+}
+
+.receipt {
+    height: 85vh;
+    @include flex(column, space-between, center);
+    & > * {
+        width: 100%;
+    }
+    &__card {
+        width: 100%;
+        background-color: $primaryTextLight;
+        @include flex(column, space-between, center);
+        gap: $gap;
+        margin-block: auto;
+        border-radius: $radiusRegular;
+        box-shadow: $shadow-medium;
+        & > * {
+            width: 100%;
+        }
+        &--top {
+            @include flex(column, space-between, center);
+            gap: $gap;
+            padding: $padding-large $padding;
+            &-info {
+                @include center;
+                h2 {
+                    @include fontSizeBigger;
+                    letter-spacing: $spacing-large;
+                }
+                p {
+                    @include fontSizeSmall;
+                    color: $secondaryTextDark;
+                    font-weight: 700;
+                    letter-spacing: $spacing-sml;
+                }
+            }
+            &-items {
+                h3, span {
+                    @include fontSizeRegular;
+                }
+                p {
+                    @include fontSizeSmaller;
+                }
+                aside {
+                    border-color: $primaryTextDark;
+                }
+            }
+            &-image {
+                @include logoSmall(calc($base * 2.375), 1);
+                @include bgGroup("./assets/logo-red.png", contain, center);
+            }
+            & > *:not(.receipt__card--top-image) {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        &--bottom {
+            background-color: $totalBg;
+            @include flex(row, space-between, center);
+            padding: $padding;
+            h3 {
+                @include fontSizeRegular;
+                font-weight: 700;
+                text-transform: uppercase;
+                text-align: left;
+                color: $primaryTextDark;
+            }
+            h2 {
+                @include fontSizeBigger;
+            }
+            p {
+                @include fontSizeSmaller;
+                color: $secondaryTextDark;
+            }
+        }
+    }
+}

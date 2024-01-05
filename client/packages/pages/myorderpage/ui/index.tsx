@@ -18,6 +18,7 @@ export const Myorderpage = () => {
 
   const openCheckout = () => {
     addOrder({ id: id, products: cart, totalPrice: total, orderStatus: "onGoing" });
+    localStorage.setItem("orderId", id);
     navigate('/checkout');
   }
 
@@ -25,7 +26,6 @@ export const Myorderpage = () => {
     const totalPrice = cart.reduce((sum, cartItem) => {
       return sum + cartItem.price * cartItem.quantity;
     }, 0);
-
     setTotal(totalPrice);
   }
 

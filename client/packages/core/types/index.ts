@@ -5,6 +5,7 @@ export enum StyleTypes {
   "ACCENT" = "accent",
   "ALERT" = "alert",
   "CART" = "cart",
+  "BORDER" = "border",
 }
 
 export type WontonTypes = {
@@ -37,5 +38,5 @@ export type Order = {
 
 export type OrderApiResponse = {
   success: boolean;
-  response?: Order | Order[];
+  order: Order;
 };
