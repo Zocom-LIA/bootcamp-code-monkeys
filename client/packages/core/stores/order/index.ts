@@ -1,21 +1,13 @@
 import { create } from "zustand";
 import { Product } from "@zocom/types";
 
-
-// type Order = {
-//   id: string;
-//   products: Product[];
-//   orderStatus: string;
-//     timeStamp: Date;
-//     totalPrice: number;
-// };
-
 type OrderState = {
   cart: Product[];
   addToCart: (product: Product) => void;
   increaseQuantity: (product: Product) => void;
   decreaseQuantity: (product: Product) => void;
   removeFromCart: (product: Product) => void;
+  emptyCart: () => void;
 };
 
 export const useOrderStore = create<OrderState>()((set) => ({
@@ -48,4 +40,7 @@ export const useOrderStore = create<OrderState>()((set) => ({
         cart: updatedCart,
       };
     }),
+    emptyCart: () => set(() => ({
+      cart: []
+    }))
 }));

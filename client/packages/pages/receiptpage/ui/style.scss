@@ -44,11 +44,14 @@ body:has(.receipt) {
                 }
             }
             &-items {
+                @include grid(100%);
+                gap: $gap-sml;
                 h3, span {
                     @include fontSizeRegular;
                 }
                 p {
                     @include fontSizeSmaller;
+                    text-align: left;
                 }
                 aside {
                     border-color: $primaryTextDark;
