@@ -8,7 +8,7 @@ export enum CardType {
   "MENU" = "menu",
   "SAUCE" = "sauce",
   "CART" = "cart",
-  "RECEIPT" = "receipt"
+  "RECEIPT" = "receipt",
 }
 
 type CardProps = {
@@ -52,11 +52,20 @@ export const Card = ({ props, state }: CardProps) => {
     <article className="card">
       <section
         className="card__top"
-        onClick={state === CardType.MENU ? () => handleAddToCart(props) : undefined}
+        onClick={
+          state === CardType.MENU && props.name !== "Dipsås"
+            ? () => handleAddToCart(props)
+            : undefined
+        }
       >
         <h3>{props.name}</h3>
         <aside></aside>
-        <span>{`${isProductType(props) ? props.price * props.quantity : props.price}`} SEK</span>
+        <span>
+          {`${
+            isProductType(props) ? props.price * props.quantity : props.price
+          }`}{" "}
+          SEK
+        </span>
       </section>
       <section className="card__bottom">
         {state === CardType.MENU ? (
@@ -90,10 +99,11 @@ export const Card = ({ props, state }: CardProps) => {
           </>
         ) : state === CardType.RECEIPT ? (
           <>
-           <p>{isProductType(props) && props.quantity} stycken</p></>
-        ) : 
-        <></>
-        }
+            <p>{isProductType(props) && props.quantity} stycken</p>
+          </>
+        ) : (
+          <></>
+        )}
       </section>
     </article>
   );
