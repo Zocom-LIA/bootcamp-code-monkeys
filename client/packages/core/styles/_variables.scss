@@ -59,9 +59,9 @@ $widescreenBreakpoint: 1600px;
 
 /* HELPERS */
 
-@mixin logoSmall {
-    width: $logo-sml;
-    aspect-ratio: 1;
+@mixin logoSmall($width, $aspectRatio) {
+    width: $width;
+    aspect-ratio: $aspectRatio;
 }
 
 @mixin center {

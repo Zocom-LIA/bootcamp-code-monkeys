@@ -5,6 +5,7 @@ export enum StyleTypes {
   "ACCENT" = "accent",
   "ALERT" = "alert",
   "CART" = "cart",
+  "BORDER" = "border",
 }
 
 export type WontonTypes = {

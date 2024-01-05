@@ -37,6 +37,13 @@ $fzBase: 16px;
     text-transform: uppercase;
 }
 
+@mixin fontSizeHeadingSmall {
+    font-size: calc($fzBase * 1.75);
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
 @mixin fontSizeHeadingRegular {
     font-size: calc($fzBase * 2);
     font-weight: 700;

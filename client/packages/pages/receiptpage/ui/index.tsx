@@ -1,6 +1,5 @@
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { RenderItems } from './feature/RenderItems';
 
 import { Header } from "@zocom/header";
