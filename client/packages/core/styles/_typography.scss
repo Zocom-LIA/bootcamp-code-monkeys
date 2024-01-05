@@ -3,7 +3,8 @@
 :root {
     font-family: 'Fira Sans', sans-serif;
 }
-
+$spacing-sml: 0.96px;
+$spacing-large: 1.92px;
 $fzBase: 16px;
 
 @mixin fontSizeSmaller {

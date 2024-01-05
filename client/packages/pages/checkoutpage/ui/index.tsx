@@ -15,7 +15,7 @@ export const Checkoutpage = () => {
     queryKey: ["order"],
     queryFn: getOrder
   });
-
+  orderQuery.refetch();
   const orderItem = orderQuery?.data?.order || [];
   if (orderQuery.isLoading) return <h1>Loading...</h1>;
 
