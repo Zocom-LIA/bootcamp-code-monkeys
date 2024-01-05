@@ -1,0 +1,43 @@
+@use "@zocom/styles" as *;
+
+body:has(.checkout) {
+  background-color: $secondaryTextDark;
+  padding-inline: $padding;
+
+  .header__cart {
+    display: none;
+  }
+}
+
+.checkout {
+  height: 85vh;
+  @include flex(column, space-between, center);
+  text-align: center;
+  color: $secondaryTextLight;
+  & > * {
+    width: 100%;
+  }
+  &__top {
+    @include flex(column, space-between, center);
+    gap: $gap;
+    &--image {
+      @include logoSmall(100%, 1);
+      background: url("./assets/boxtop.png"), center center / contain no-repeat;
+    }
+    h2 {
+        @include fontSizeHeadingRegular;
+        line-height: normal;
+    }
+    h3 {
+        @include fontSizeHeadingSmall;
+    }
+  }
+  &__bottom {
+    display: grid;
+    gap: $gap;
+  }
+}
+
+body:has(.checkout.done) {
+    background-color: $accentBg;
+}

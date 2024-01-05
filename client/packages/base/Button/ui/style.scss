@@ -14,13 +14,16 @@
     background-color: $buttonBg;
   } @else if $style == "round" {
     @include button(true);
-    background-color: $buttonBg;
   } @else if $style == "alert" {
     @include button(true);
     background-color: $alertBg;
     position: absolute;
     top: -$margin-sml;
     right: -$margin-sml;
+  } @else if $style == "dark" {
+    background-color: $buttonDarkBg;
+  } @else if $style == "border" {
+    border: 1px solid $primaryTextLight;
   }
 }
 
@@ -41,11 +44,28 @@ button {
     &__cart {
       &--default {
         background-color: $primaryTextLight;
-        @include logoSmall;
+        @include logoSmall($logo-sml, 1);
         box-shadow: $shadow-medium;
       }
       &--alert {
         @include buttonStyles(alert, white);
+      }
+      &--dark {
+        @include buttonStyles(dark, white);
+        @include fontSizeBigger;
+        padding-block: $padding;
+        text-transform: uppercase;
+      }
+      &--border {
+        @include buttonStyles(border, white);
+        @include fontSizeBigger;
+        padding-block: $padding;
+      }
+    }
+    &__round {
+      &--cart {
+        @include buttonStyles(round, $primaryTextDark);
+        background: $totalBg;
       }
     }
   }

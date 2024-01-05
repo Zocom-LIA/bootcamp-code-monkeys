@@ -7,13 +7,16 @@ $secondaryTextLight: hsla(0, 0%, 93%, 1);
 $secondaryTextDark: hsla(0, 4%, 36%, 1);
 
 $menuBg: hsla(160, 48%, 70%, 1);
+$cartBg: hsla(0, 0%, 93%, 1);
 $accentBg: hsla(160, 34%, 42%, 1);
 $alertBg: hsla(0, 79%, 63%, 1);
+$totalBg: hsla(0, 4%, 20%, 0.24);
 
 $staffBgPrep: hsla(0, 67%, 95%, 1);
 $staffBgDone: hsla(160, 80%, 92%, 1);
 
 $buttonBg: hsla(48, 15%, 94%, 0.24);
+$buttonDarkBg: $primaryTextDark;
 
 /* EFFECTS */
 
@@ -56,35 +59,42 @@ $widescreenBreakpoint: 1600px;
 
 /* HELPERS */
 
-@mixin logoSmall {
-    width: $logo-sml;
-    aspect-ratio: 1;
+@mixin logoSmall($width, $aspectRatio) {
+  width: $width;
+  aspect-ratio: $aspectRatio;
+}
+
+@mixin bgGroup($logo, $size, $position) {
+  background-image: url($logo);
+  background-size: $size;
+  background-repeat: no-repeat;
+  background-position: $position;
 }
 
 @mixin center {
-    display: grid;
-    place-content: center;
+  display: grid;
+  place-content: center;
 }
 
 @mixin flex($direction, $justify, $align) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
 }
 
 @mixin grid($columns) {
-    display: grid;
-    grid-template-columns: $columns;
-    grid-auto-rows: auto;
+  display: grid;
+  grid-template-columns: $columns;
+  grid-auto-rows: auto;
 }
 
 /* BUTTON */
 
 @mixin button($circle: false) {
-    @if $circle {
-        border-radius: 50%;
-    } @else {
-        border-radius: $radiusRegular;
-    }
+  @if $circle {
+    border-radius: 50%;
+  } @else {
+    border-radius: $radiusRegular;
+  }
 }

@@ -17,11 +17,29 @@ package:
   individually: true
 
 functions:
-  api:
+  getMenu:
     handler: functions/menuFunctions/getMenu/index.handler
     events:
       - httpApi:
           path: /api/menu
+          method: GET
+  addOrder:
+    handler: functions/orderFunctions/addOrder/index.handler
+    events:
+      - httpApi:
+          path: /api/order
+          method: POST
+  getAllOrders:
+    handler: functions/orderFunctions/getAllOrders/index.handler
+    events:
+      - httpApi:
+          path: /api/orders
+          method: GET
+  getOrder:
+    handler: functions/orderFunctions/getOrder/index.handler
+    events:
+      - httpApi:
+          path: /api/order/{id}
           method: GET
 
 resources:
@@ -30,6 +48,18 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties: 
         TableName: menudb
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema: 
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    orderdb:
+      Type: AWS::DynamoDB::Table
+      Properties: 
+        TableName: orderdb
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S

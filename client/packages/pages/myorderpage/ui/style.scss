@@ -1,0 +1,46 @@
+@use "@zocom/styles" as *;
+
+body:has(.cart) {
+  background: $cartBg;
+}
+.cart {
+  height: 85vh;
+  padding: unset;
+  color: $primaryTextDark;
+  @include flex(column, space-between, normal);
+  &__items {
+    background-color: transparent;
+    place-content: unset;
+    padding: unset;
+    .card {
+      color: $primaryTextDark;
+
+      aside {
+        border-bottom: 2px dotted $primaryTextDark;
+      }
+      &__bottom {
+        @include flex(row, flex-start, center);
+        gap: 1em;
+      }
+    }
+  }
+  &__bottom {
+    @include center;
+    place-content: unset;
+    gap: $gap;
+    &--upper {
+      @include flex(row, space-between, center);
+      background-color: $totalBg;
+      padding: $padding-sml $padding;
+      h2 {
+        @include fontSizeHeadingRegular;
+      }
+      h3 {
+        @include fontSizeBigger;
+      }
+      p {
+        @include fontSizeSmall;
+      }
+    }
+  }
+}

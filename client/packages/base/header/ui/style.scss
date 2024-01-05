@@ -5,11 +5,21 @@
     padding-block: $padding;
 
     &__logo {
-        @include logoSmall;
+        @include logoSmall($logo-sml, 1);
         background: url('./assets/logo-white.svg'), center/cover no-repeat;
     }
     &__cart {
         position: relative;
         isolation: isolate;
+    }
+}
+
+.header:not(:has(figure)) {
+    justify-content: flex-end;
+
+    button {
+        background-color: transparent;
+        color: transparent;
+        box-shadow: none;
     }
 }

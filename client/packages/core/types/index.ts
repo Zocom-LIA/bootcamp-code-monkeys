@@ -4,17 +4,39 @@ export enum StyleTypes {
   "LIGHT" = "light",
   "ACCENT" = "accent",
   "ALERT" = "alert",
+  "CART" = "cart",
+  "BORDER" = "border",
 }
 
 export type WontonTypes = {
   name: string;
   id: string;
-  desc: string;
+  desc?: string;
   ingredients?: string[];
   price: number;
   sauces?: {
+    id: string;
     name: string;
-    desc: string;
     price: number;
   }[];
+};
+
+export type Product = {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+};
+
+export type Order = {
+  id: string;
+  products: Product[];
+  orderStatus: string;
+  timeStamp?: Date;
+  totalPrice: number;
+};
+
+export type OrderApiResponse = {
+  success: boolean;
+  order: Order;
 };
