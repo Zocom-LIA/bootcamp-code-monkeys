@@ -8,19 +8,25 @@ import { Header } from "@zocom/header";
 import { useOrderStore } from "@zocom/orderstore";
 import { Button, ButtonType } from "@zocom/button";
 import { StyleTypes } from "@zocom/types";
-import { addOrder } from '@zocom/myorderpage';
+import { addOrder } from "@zocom/myorderpage";
 
 export const Myorderpage = () => {
-  const { cart } = useOrderStore();
+  const { cart, emptyCart } = useOrderStore();
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
   const id = nanoid();
 
   const openCheckout = () => {
-    addOrder({ id: id, products: cart, totalPrice: total, orderStatus: "onGoing" });
+    addOrder({
+      id: id,
+      products: cart,
+      totalPrice: total,
+      orderStatus: "onGoing",
+    });
     localStorage.setItem("orderId", id);
-    navigate('/checkout');
-  }
+    emptyCart();
+    navigate("/checkout");
+  };
 
   function calculateTotalPrice() {
     const totalPrice = cart.reduce((sum, cartItem) => {
@@ -48,7 +54,13 @@ export const Myorderpage = () => {
             </section>
             <h2>{total} SEK</h2>
           </section>
-          <Button type={ButtonType.CART} style={StyleTypes.DARK} onClick={() => openCheckout()}>Take my money!</Button>
+          <Button
+            type={ButtonType.CART}
+            style={StyleTypes.DARK}
+            onClick={() => openCheckout()}
+          >
+            Take my money!
+          </Button>
         </section>
       </main>
     </>

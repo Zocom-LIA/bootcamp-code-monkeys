@@ -12,6 +12,8 @@ body:has(.cart) {
     background-color: transparent;
     place-content: unset;
     padding: unset;
+    overflow: auto;
+    max-height: 70%;
     .card {
       color: $primaryTextDark;
 
