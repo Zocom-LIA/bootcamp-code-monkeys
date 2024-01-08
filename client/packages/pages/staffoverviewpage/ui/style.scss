@@ -1,0 +1,34 @@
+@use "@zocom/styles" as *;
+
+body:has(.orders) {
+    background-color: $primaryTextDark;
+    padding-inline: $padding-huge;
+    
+    .header__cart {
+        display: none;
+    }
+}
+
+.orders {
+    color: $primaryTextLight;
+    @include grid(repeat(2, 1fr));
+    gap: calc($gap-huge * 2);
+    h3 {
+        @include fontSizeBigger;
+        color: $cartBg;
+    }
+    &__headline {
+        @include flex(row, space-between, center);
+        gap: $gap;
+        aside {
+            height: 1px;
+            width: 100%;
+            background-color: $buttonBg;
+        }
+    }
+    &__items {
+        @include grid(100%);
+        gap: $gap-huge;
+        padding-top: $padding-huge;
+    }
+}

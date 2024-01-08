@@ -5,8 +5,8 @@ import { Header } from "@zocom/header";
 export const Overviewpage = () => {
   return (
     <>
-      <Header showLogo={true} />
-      <main>
+      <Header showLogo={true} showCart={false} heading="Kitchen View" />
+      <main className="orders">
         <RenderItems />
       </main>
     </>

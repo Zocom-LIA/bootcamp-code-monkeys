@@ -41,7 +41,7 @@ export const Myorderpage = () => {
 
   return (
     <>
-      <Header showLogo={false} />
+      <Header showLogo={false} showCart={true} />
       <main className="cart">
         <section className="menu cart__items">
           <RenderItems />

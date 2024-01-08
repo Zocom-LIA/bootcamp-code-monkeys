@@ -30,7 +30,7 @@ export const Checkoutpage = () => {
   
   return (
     <>
-      <Header showLogo={true} />
+      <Header showLogo={true} showCart={false} />
       <main className={"checkout " + (done ? "done" : "")}>
         <section className="checkout__top">
             <figure className="checkout__top--image"></figure>
