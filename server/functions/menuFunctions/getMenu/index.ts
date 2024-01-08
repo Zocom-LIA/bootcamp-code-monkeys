@@ -1,16 +1,18 @@
+import { APIGatewayProxyResult } from "aws-lambda";
 import { sendResponse } from "../../../responses/index";
 import { docClient } from "../../../services/db";
 import { ScanCommand } from "@aws-sdk/lib-dynamodb";
 
-export async function handler() {
+export async function handler() : Promise<APIGatewayProxyResult> {
   try {
     const command = new ScanCommand({
-      TableName: "orderdb",
+      TableName: "menudb",
     });
     const response = await docClient.send(command);
-    return sendResponse(200, { success: true, orders: response.Items });
+    return sendResponse(200, { success: true, menu: response.Items });
   } catch (err) {
     return sendResponse(err.statusCode, {
+      
       success: false,
       message: err.message,
     });

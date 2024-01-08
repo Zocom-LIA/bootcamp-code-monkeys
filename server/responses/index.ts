@@ -1,4 +1,7 @@
-export function sendResponse(code, response) {
+import { HTTPResponse } from '@zocom/servertypes';
+
+
+export function sendResponse(code: number, response: HTTPResponse) {
   return {
     statusCode: code,
     headers: {
