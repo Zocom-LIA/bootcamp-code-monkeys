@@ -1,11 +1,20 @@
 import { sendResponse } from "../../../responses/index";
 import { docClient } from "../../../services/db";
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
+import { APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda';
 
-export async function handler(event) {
-    const { id, products, totalPrice, orderStatus } = JSON.parse(event.body);
+export async function handler(event: APIGatewayProxyEvent) : Promise<APIGatewayProxyResult> {
+  if (event.body === null) {
+    return sendResponse(400, {
+        success: false,
+        message: "Request body is null",
+    });
+}
 
-    const timeStamp = new Date();
+  const { id, products, totalPrice, orderStatus } = JSON.parse(event.body);
+
+  const timeStamp = new Date();
+
   try {
     const command = new PutCommand({
       TableName: "orderdb",
