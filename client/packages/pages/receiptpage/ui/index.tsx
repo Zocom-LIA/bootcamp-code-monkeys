@@ -11,7 +11,7 @@ export const Receiptpage = () => {
 
   return (
     <>
-      <Header showLogo={true} />
+      <Header showLogo={true} showCart={false} />
       <main className="receipt">
         <section className="receipt__card">
           <RenderItems />

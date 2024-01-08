@@ -38,5 +38,6 @@ export type Order = {
 
 export type OrderApiResponse = {
   success: boolean;
-  order: Order;
+  order?: Order;
+  orders?: Order[];
 };
