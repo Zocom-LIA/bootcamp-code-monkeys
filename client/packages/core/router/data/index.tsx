@@ -3,6 +3,7 @@ import { Menupage } from "@zocom/menupage";
 import { Myorderpage } from "@zocom/myorderpage";
 import { Checkoutpage } from '@zocom/checkoutpage';
 import { Receiptpage } from '@zocom/receiptpage';
+import { Overviewpage } from '@zocom/staffoverviewpage'
 
 const router = createBrowserRouter([
   {
@@ -21,10 +22,10 @@ const router = createBrowserRouter([
       path: "/receipt",
       element: <Receiptpage />
   },
-  // {
-  //     path: "/staff/overview",
-  //     element: <Overviewpage />
-  // },
+  {
+      path: "/staff/overview",
+      element: <Overviewpage />
+  },
   {
     path: "*",
     element: <h3>Page Not Found</h3>,
