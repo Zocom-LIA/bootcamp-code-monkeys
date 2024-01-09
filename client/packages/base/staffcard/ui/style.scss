@@ -1,0 +1,65 @@
+@use '@zocom/styles' as *;
+
+.staffcard {
+    @include grid(100%);
+    gap: $gap;
+    padding: $padding-sml;
+    background-color: $staffBgPrep;
+    color: $secondaryTextDark;
+    border-radius: $radiusRegular;
+    box-shadow: $shadow-large;
+    text-align: center;
+    & > * {
+        border-radius: $radiusRegular;
+    }
+    &__heading {
+        @include fontSizeBigger;
+        font-weight: 500;
+    }
+    &__order {
+        @include grid(100%);
+        gap: $gap;
+        font-weight: 700;
+        &--info {
+            @include fontSizeRegular;
+            @include flex(row, center, flex-end);
+            justify-content: unset;
+            gap: $gap-sml;
+            align-self: stretch;
+            &-left {
+                @include flex(row, unset, baseline);
+                flex: 3;
+                gap: $gap-sml;
+                h4 {
+                    text-transform: uppercase;
+                }
+                aside {
+                    border-bottom: 1px dotted black;
+                    flex: 1;
+                }
+            }
+            &-right {
+                flex: 1;
+                text-align: right;
+            }
+        }
+        &--total {
+            font-size: calc($fzBase * 1.25);
+            text-align: right;
+            border-top: 1px solid $totalBg;
+            padding-block: $padding-sml;
+        }
+    }
+    &__timer {
+        background-color: $totalBg;
+        padding: $padding-sml;
+        text-transform: uppercase;
+        color: $primaryTextDark;
+    }
+}
+.staffcard.done {
+    background-color: $staffBgDone;
+    button {
+        background-color: $accentBg;
+    }
+}

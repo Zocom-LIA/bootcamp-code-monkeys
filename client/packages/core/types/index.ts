@@ -32,7 +32,7 @@ export type Order = {
   id: string;
   products: Product[];
   orderStatus: string;
-  timeStamp?: Date;
+  timeStamp?: string;
   totalPrice: number;
 };
 
