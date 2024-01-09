@@ -1,5 +1,6 @@
 import { getAllOrders } from "@zocom/staffoverviewpage";
 import { useQuery } from "@tanstack/react-query";
+import { StaffCard } from '@zocom/staffcard';
 
 export const RenderItems = () => {
   const orderQuery = useQuery({
@@ -40,7 +41,7 @@ export const RenderItems = () => {
         </section>
         <section className="orders__items">
           {ongoingOrders &&
-            ongoingOrders.map((item) => <p key={item.id}>{item.id}</p>)}
+            ongoingOrders.map((item) => <StaffCard key={item.id} props={item} type={item.orderStatus} />)}
         </section>
       </section>
       <section className="orders__done">
@@ -50,7 +51,7 @@ export const RenderItems = () => {
         </section>
         <section className="orders__items">
           {doneOrders &&
-            doneOrders.map((item) => <p key={item.id}>{item.id}</p>)}
+            doneOrders.map((item) => <StaffCard key={item.id} props={item} type={item.orderStatus} />)}
         </section>
       </section>
     </>
