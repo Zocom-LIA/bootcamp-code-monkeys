@@ -42,7 +42,7 @@ export const Timer = ({ timeStamp, onStop, status }: TimerType) => {
   return (
     <>
       <section className="staffcard__timer">
-        {timeStamp ? formattedTime(elapsedTime) : "00:00"}
+        {status === "onGoing" ? formattedTime(elapsedTime) : timeStamp}
       </section>
       <Button
         onClick={stopTimer}
