@@ -1,6 +1,6 @@
 // import { Button, ButtonType } from "@zocom/button";
-import { Order } from "@zocom/types";
 import "./style.scss";
+import { Order } from "@zocom/types";
 import { StaffCardInfo } from './feature/StaffCardInfo';
 import { Timer } from './feature/Timer';
 import { useState } from "react";
@@ -24,7 +24,7 @@ export const StaffCard = ({ props, type }: StaffCardType) => {
       <section className="staffcard__order">
         {props.products &&
           props.products.map((product, index) => (
-            <StaffCardInfo key={index} product={product} />
+            <StaffCardInfo key={index} {...product} />
           ))}
         <section className="staffcard__order--total">{props.totalPrice} sek</section>
       </section>

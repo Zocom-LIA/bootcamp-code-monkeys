@@ -1,10 +1,6 @@
 import { Product } from '@zocom/types';
 
-type InfoType ={
-    product: Product
-}
-
-export const StaffCardInfo = ({product}: InfoType) => {
+export const StaffCardInfo = (product: Product) => {
   return (
     <section className="staffcard__order--info">
       <section className="staffcard__order--info-left">
