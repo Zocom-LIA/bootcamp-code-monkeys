@@ -6,11 +6,12 @@ type TimerType = {
   timeStamp: string | undefined;
   onStop: () => void;
   status: string;
+  setStopTime: (time: string) => void;
 };
 
 // elapsed time vill vi mutera som timeStamp
 
-export const Timer = ({ timeStamp, onStop, status }: TimerType) => {
+export const Timer = ({ timeStamp, onStop, status, setStopTime }: TimerType) => {
   const [startTime, setStartTime] = useState<number | undefined>(undefined);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
 
@@ -22,12 +23,14 @@ export const Timer = ({ timeStamp, onStop, status }: TimerType) => {
         const currentTime = new Date().getTime();
         setElapsedTime(currentTime - startTimestamp);
       }, 1000);
-
       return () => clearInterval(intervalId);
     }
   }, [timeStamp]);
 
   const stopTimer = () => {
+    console.log("Elapsed: " + elapsedTime);
+    setStopTime(elapsedTime.toString());
+    
     clearInterval(startTime);
     onStop();
   };
@@ -42,7 +45,7 @@ export const Timer = ({ timeStamp, onStop, status }: TimerType) => {
   return (
     <>
       <section className="staffcard__timer">
-        {status === "onGoing" ? formattedTime(elapsedTime) : timeStamp}
+        {status === "onGoing" ? formattedTime(elapsedTime) : `${timeStamp}`}
       </section>
       <Button
         onClick={stopTimer}

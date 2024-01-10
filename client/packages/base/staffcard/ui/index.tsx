@@ -29,8 +29,7 @@ export const StaffCard = ({ props, type }: StaffCardType) => {
   const { mutate }: UseMutationResult<OrderApiResponse, unknown, UpdateOrder, unknown> = useMutation(
     {mutationFn: stopOrderMutation,
       onSuccess: () => {
-        setOrderStatus('done');
-        setStopTime(new Date().toISOString());
+        console.log('Order Changed');
       },
       onError: (error) => {
         console.error('Failed to stop the order:', error);
@@ -55,7 +54,7 @@ export const StaffCard = ({ props, type }: StaffCardType) => {
           ))}
         <section className="staffcard__order--total">{props.totalPrice} sek</section>
       </section>
-      <Timer timeStamp={stopTime || props.timeStamp} onStop={handleStopTimer} status={orderStatus}/>
+      <Timer timeStamp={stopTime || props.timeStamp} onStop={handleStopTimer} status={orderStatus} setStopTime={setStopTime}/>
       {/* <Button
         onClick={() => console.log("Clicked")}
         type={ButtonType.REGULAR}
