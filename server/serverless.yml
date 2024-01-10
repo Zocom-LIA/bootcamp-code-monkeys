@@ -41,6 +41,12 @@ functions:
       - httpApi:
           path: /api/order/{id}
           method: GET
+  updateOrder:
+    handler: functions/orderFunctions/updateOrder/index.handler
+    events:
+      - httpApi:
+          path: /api/order/{id}
+          method: PUT
 
 resources:
   Resources: 
