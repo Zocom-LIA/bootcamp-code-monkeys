@@ -1,5 +1,5 @@
 import { getAllOrders } from "@zocom/staffoverviewpage";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query"
 import { StaffCard } from '@zocom/staffcard';
 
 export const RenderItems = () => {

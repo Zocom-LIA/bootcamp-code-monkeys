@@ -41,3 +41,9 @@ export type OrderApiResponse = {
   order?: Order;
   orders?: Order[];
 };
+
+export type UpdateOrder = {
+  id: string,
+  orderStatus: string,
+  timeStamp?: string
+}
