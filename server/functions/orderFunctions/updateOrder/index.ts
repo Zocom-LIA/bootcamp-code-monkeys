@@ -12,7 +12,6 @@ export async function handler( event: APIGatewayProxyEvent): Promise<APIGatewayP
   }
   const { orderStatus, timeStamp } = JSON.parse(event.body);
   const { id } = event.pathParameters;
-  console.log("Orderstatus: ", orderStatus, "timestamp: ", timeStamp, "id: ", id)
   try {
     const command = new UpdateCommand({
         TableName: "orderdb",

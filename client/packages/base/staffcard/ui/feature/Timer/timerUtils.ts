@@ -1,20 +1,16 @@
-import { Button, ButtonType } from "@zocom/button";
-import { StyleTypes } from "@zocom/types";
 import { useEffect, useState } from "react";
 
-type TimerType = {
+type TimerUtilsType = {
   timeStamp: string | undefined;
-  onStop: () => void;
   status: string;
   setStopTime: (time: string) => void;
 };
 
-export const Timer = ({
+export function useTimer({
   timeStamp,
-  onStop,
   status,
   setStopTime,
-}: TimerType) => {
+}: TimerUtilsType) {
   const [startTime, setStartTime] = useState<number | undefined>(undefined);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [time, setTime] = useState<number>(0);
@@ -32,7 +28,7 @@ export const Timer = ({
       const convertedTime = parseFloat(timeStamp);
       setTime(convertedTime);
     }
-  }, [timeStamp]);
+  }, [status, timeStamp]);
 
   useEffect(() => {
     if (status === "onGoing" && elapsedTime > 0) {
@@ -42,7 +38,6 @@ export const Timer = ({
 
   const stopTimer = () => {
     clearInterval(startTime);
-    onStop();
   };
 
   const formattedTime = (milliseconds: number): string => {
@@ -52,24 +47,10 @@ export const Timer = ({
     return `${minutes}:${formattedSeconds < 10 ? "0" : ""}${formattedSeconds}`;
   };
 
-  return (
-    <>
-      <section className="staffcard__timer">
-        {status === "onGoing"
-          ? formattedTime(elapsedTime)
-          : formattedTime(time)}
-      </section>
-      <Button
-        onClick={
-          status === "onGoing"
-            ? stopTimer
-            : () => console.log("onClick didn't work")
-        }
-        type={ButtonType.REGULAR}
-        style={StyleTypes.ALERT}
-      >
-        {status === "done" ? "Serverad" : "Redo att serveras"}
-      </Button>
-    </>
-  );
-};
+  return {
+    elapsedTime,
+    time,
+    formattedTime,
+    stopTimer,
+  };
+}

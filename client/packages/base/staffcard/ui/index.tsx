@@ -1,15 +1,9 @@
 import "./style.scss";
-import { Order, OrderApiResponse, UpdateOrder } from "@zocom/types";
+import { Order } from "@zocom/types";
 import { StaffCardInfo } from "./feature/StaffCardInfo";
-import { Timer } from "./feature/Timer";
+import { Timer } from "./feature/Timer/Timer";
 import { useState } from "react";
-import {
-  UseMutationResult,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
-import { updateOrder } from "..";
-import { getAllOrders } from "@zocom/staffoverviewpage";
+import { useStopOrderMutation } from "..";
 
 type StaffCardType = {
   type: string;
@@ -17,36 +11,12 @@ type StaffCardType = {
 };
 
 export const StaffCard = ({ props, type }: StaffCardType) => {
-  const [orderStatus, setOrderStatus] = useState(props.orderStatus);
   const [stopTime, setStopTime] = useState<string | undefined>(undefined);
+  const orderStatus = props.orderStatus;
 
-  const queryClient = useQueryClient();
-
-  const stopOrderMutation = async ({
-    id,
-    orderStatus,
-    timeStamp,
-  }: UpdateOrder): Promise<OrderApiResponse> => {
-    const response = await updateOrder({ id, orderStatus, timeStamp });
-    return response;
-  };
-
-  const {
-    mutate,
-  }: UseMutationResult<OrderApiResponse, unknown, UpdateOrder, unknown> =
-    useMutation({
-      mutationFn: stopOrderMutation,
-      onSuccess: () => {
-        console.log("Order Changed");
-        queryClient.invalidateQueries({ queryKey: ["orders"] });
-      },
-      onError: (error) => {
-        console.error("Failed to stop the order:", error);
-      },
-    });
-
+  const mutate = useStopOrderMutation();
   const handleStopTimer = () => {
-    mutate({
+    mutate.mutate({
       id: props.id,
       orderStatus: "done",
       timeStamp: stopTime,
