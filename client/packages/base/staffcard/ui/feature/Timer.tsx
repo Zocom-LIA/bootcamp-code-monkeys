@@ -6,26 +6,39 @@ type TimerType = {
   timeStamp: string | undefined;
   onStop: () => void;
   status: string;
+  setStopTime: (time: string) => void;
 };
 
-// elapsed time vill vi mutera som timeStamp
-
-export const Timer = ({ timeStamp, onStop, status }: TimerType) => {
+export const Timer = ({
+  timeStamp,
+  onStop,
+  status,
+  setStopTime,
+}: TimerType) => {
   const [startTime, setStartTime] = useState<number | undefined>(undefined);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const [time, setTime] = useState<number>(0);
 
   useEffect(() => {
-    if (timeStamp) {
+    if (status === "onGoing" && timeStamp) {
       const startTimestamp = new Date(timeStamp).getTime();
       setStartTime(startTimestamp);
       const intervalId = setInterval(() => {
         const currentTime = new Date().getTime();
         setElapsedTime(currentTime - startTimestamp);
       }, 1000);
-
       return () => clearInterval(intervalId);
+    } else if (status === "done" && timeStamp) {
+      const convertedTime = parseFloat(timeStamp);
+      setTime(convertedTime);
     }
   }, [timeStamp]);
+
+  useEffect(() => {
+    if (status === "onGoing" && elapsedTime > 0) {
+      setStopTime(elapsedTime.toString());
+    }
+  }, [status, elapsedTime]);
 
   const stopTimer = () => {
     clearInterval(startTime);
@@ -42,10 +55,16 @@ export const Timer = ({ timeStamp, onStop, status }: TimerType) => {
   return (
     <>
       <section className="staffcard__timer">
-        {status === "onGoing" ? formattedTime(elapsedTime) : timeStamp}
+        {status === "onGoing"
+          ? formattedTime(elapsedTime)
+          : formattedTime(time)}
       </section>
       <Button
-        onClick={stopTimer}
+        onClick={
+          status === "onGoing"
+            ? stopTimer
+            : () => console.log("onClick didn't work")
+        }
         type={ButtonType.REGULAR}
         style={StyleTypes.ALERT}
       >
