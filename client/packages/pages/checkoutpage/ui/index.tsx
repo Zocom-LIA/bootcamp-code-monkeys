@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "@zocom/header";
 import { Button, ButtonType } from "@zocom/button";
 import { Order, StyleTypes } from "@zocom/types";
-import { CountdownTimer } from "./feature/index";
+import { CountdownTimer } from "./feature/Countdown";
 import { useQuery } from "@tanstack/react-query";
 import { getOrder } from "..";
 
