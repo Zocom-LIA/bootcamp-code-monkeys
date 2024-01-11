@@ -25,8 +25,8 @@ export const RenderItems = () => {
   });
 
   const sortedDoneOrders = doneOrders.sort((a, b) => {
-    let timeStampA = parseInt(a.timeStamp || "0");
-    let timeStampB = parseInt(b.timeStamp || "0");
+    const timeStampA = parseInt(a.timeStamp || "0");
+    const timeStampB = parseInt(b.timeStamp || "0");
     return timeStampB - timeStampA;
   });
 
