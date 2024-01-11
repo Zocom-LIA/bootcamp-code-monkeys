@@ -5,7 +5,6 @@ import { StaffCard } from "@zocom/staffcard";
 export const RenderItems = () => {
   const params = new URLSearchParams(window.location.search);
   const key = params.get("key");
-  console.log("Using key for request: ", key);
 
   const orderQuery = useQuery({
     queryKey: ["orders"],
@@ -14,27 +13,22 @@ export const RenderItems = () => {
 
   const orderItems = orderQuery?.data?.orders || [];
   if (orderQuery.isLoading) return <h1>Loading...</h1>;
-
   if (orderQuery.isError) return <pre>{JSON.stringify(orderQuery.error)}</pre>;
 
-  const ongoingOrders = orderItems.filter(
-    (item) => item.orderStatus === "onGoing"
-  );
+  const ongoingOrders = orderItems.filter((item) => item.orderStatus === "onGoing");
   const doneOrders = orderItems.filter((item) => item.orderStatus === "done");
 
-  /* const sortedOngoingOrders = ongoingOrders.sort((a, b) => {
-    const timeStampA = a.timeStamp?.getTime() || 0;
-    const timeStampB = b.timeStamp?.getTime() || 0;
-
-    return new Date(timeStampB - timeStampA);
+  const sortedOngoingOrders = ongoingOrders.sort((a, b) => {
+    const dateA = a.timeStamp ? new Date(a.timeStamp) : new Date(0);
+    const dateB = b.timeStamp ? new Date(b.timeStamp) : new Date(0);
+    return dateA.valueOf() - dateB.valueOf();
   });
 
   const sortedDoneOrders = doneOrders.sort((a, b) => {
-    const timeStampA = a.timeStamp?.getTime() || 0;
-    const timeStampB = b.timeStamp?.getTime() || 0;
-
+    let timeStampA = parseInt(a.timeStamp || "0");
+    let timeStampB = parseInt(b.timeStamp || "0");
     return timeStampB - timeStampA;
-  }); */
+  });
 
   return (
     <>
@@ -44,8 +38,8 @@ export const RenderItems = () => {
           <aside></aside>
         </section>
         <section className="orders__items">
-          {ongoingOrders &&
-            ongoingOrders.map((item) => (
+          {sortedOngoingOrders &&
+            sortedOngoingOrders.map((item) => (
               <StaffCard key={item.id} props={item} type={item.orderStatus} />
             ))}
         </section>
@@ -56,8 +50,8 @@ export const RenderItems = () => {
           <aside></aside>
         </section>
         <section className="orders__items">
-          {doneOrders &&
-            doneOrders.map((item) => (
+          {sortedDoneOrders &&
+            sortedDoneOrders.map((item) => (
               <StaffCard key={item.id} props={item} type={item.orderStatus} />
             ))}
         </section>
