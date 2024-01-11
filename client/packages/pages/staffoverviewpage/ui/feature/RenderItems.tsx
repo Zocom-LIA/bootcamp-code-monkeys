@@ -5,7 +5,6 @@ import { StaffCard } from "@zocom/staffcard";
 export const RenderItems = () => {
   const params = new URLSearchParams(window.location.search);
   const key = params.get("key");
-  console.log("Using key for request: ", key);
 
   const orderQuery = useQuery({
     queryKey: ["orders"],

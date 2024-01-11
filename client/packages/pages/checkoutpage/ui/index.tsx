@@ -1,12 +1,12 @@
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 
 import { Header } from "@zocom/header";
 import { Button, ButtonType } from "@zocom/button";
-import { StyleTypes, Order } from "@zocom/types";
-import { getOrder } from "@zocom/checkoutpage";
+import { Order, StyleTypes } from "@zocom/types";
 import { CountdownTimer } from "./feature/index";
+import { useQuery } from "@tanstack/react-query";
+import { getOrder } from "..";
 
 export const Checkoutpage = () => {
   const navigate = useNavigate();

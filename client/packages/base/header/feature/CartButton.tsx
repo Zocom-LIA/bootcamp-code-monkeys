@@ -7,9 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const CartButton = () => {
   const navigate = useNavigate();
-  const openCart = () => {
-    navigate("/cart");
-  };
+  const openCart = () => { navigate("/cart")};
   const [amount, setAmount] = useState(0);
   const { cart } = useOrderStore();
 
@@ -43,7 +41,6 @@ export const CartButton = () => {
           />
         </svg>
       </Button>
-      
         <Button
         type={ButtonType.CART}
         style={StyleTypes.ALERT}
@@ -51,7 +48,6 @@ export const CartButton = () => {
       >
         {amount}
       </Button>
-      
     </section>
   );
 };
