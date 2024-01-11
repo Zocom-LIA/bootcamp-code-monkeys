@@ -3,9 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { StaffCard } from "@zocom/staffcard";
 
 export const RenderItems = () => {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get("key");
+  console.log("Using key for request: ", key);
+
   const orderQuery = useQuery({
     queryKey: ["orders"],
-    queryFn: getAllOrders,
+    queryFn: () => getAllOrders(key),
   });
 
   const orderItems = orderQuery?.data?.orders || [];
