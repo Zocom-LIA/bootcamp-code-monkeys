@@ -25,7 +25,6 @@ export const Card = ({ props, state }: CardProps) => {
     removeFromCart,
     cart,
   } = useOrderStore();
-  
 
   const handleAddToCart = (props: WontonTypes | Product) => {
     if ("id" in props) {
