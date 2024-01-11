@@ -20,9 +20,13 @@ body:has(.checkout) {
   &__top {
     @include flex(column, space-between, center);
     gap: $gap;
+    padding-bottom: $padding;
     &--image {
       @include logoSmall(100%, 1);
-      background: url("./assets/boxtop.png"), center center / contain no-repeat;
+      background-image: url("./assets/boxtop.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
     }
     h2 {
         @include fontSizeHeadingRegular;
