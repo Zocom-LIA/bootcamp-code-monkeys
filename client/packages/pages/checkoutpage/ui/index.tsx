@@ -41,7 +41,7 @@ export const Checkoutpage = () => {
         <section className="checkout__top">
           <figure className="checkout__top--image"></figure>
           <h2>Dina wontons {statusElement}</h2>
-          {!done ? <CountdownTimer /> : null}
+          <section className="checkout__top--counter">{!done ? <CountdownTimer /> : null}</section>
           <p>#{orderId}</p>
         </section>
         <section className="checkout__bottom">

@@ -28,6 +28,9 @@ body:has(.checkout) {
       background-size: contain;
       background-position: center center;
     }
+    &--counter {
+      min-height: calc($base  * 2.5);
+    }
     h2 {
         @include fontSizeHeadingRegular;
         line-height: normal;
