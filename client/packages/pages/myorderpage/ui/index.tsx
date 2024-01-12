@@ -1,47 +1,17 @@
 import "./style.scss";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
 import { RenderItems } from "./feature/RenderItems";
+import { useMyOrderPage } from './utils/orderUtils'
 
 import { Header } from "@zocom/header";
-import { useOrderStore } from "@zocom/orderstore";
 import { Button, ButtonType } from "@zocom/button";
 import { StyleTypes } from "@zocom/types";
-import { addOrder } from "@zocom/myorderpage";
 
 export const Myorderpage = () => {
-  const { cart, emptyCart } = useOrderStore();
-  const [total, setTotal] = useState(0);
-  const navigate = useNavigate();
-  const id = nanoid();
-
-  const openCheckout = () => {
-    addOrder({
-      id: id,
-      products: cart,
-      totalPrice: total,
-      orderStatus: "onGoing",
-    });
-    localStorage.setItem("orderId", id);
-    emptyCart();
-    navigate("/checkout");
-  };
-
-  function calculateTotalPrice() {
-    const totalPrice = cart.reduce((sum, cartItem) => {
-      return sum + cartItem.price * cartItem.quantity;
-    }, 0);
-    setTotal(totalPrice);
-  }
-
-  useEffect(() => {
-    calculateTotalPrice();
-  }, [cart]);
+  const { total, openCheckout } = useMyOrderPage();
 
   return (
     <>
-      <Header showLogo={false} />
+      <Header showLogo={false} showCart={true} />
       <main className="cart">
         <section className="menu cart__items">
           <RenderItems />
@@ -54,10 +24,10 @@ export const Myorderpage = () => {
             </section>
             <h2>{total} SEK</h2>
           </section>
-          <Button
+          <Button isDisabled={(total == 0 ? true: false)}
             type={ButtonType.CART}
             style={StyleTypes.DARK}
-            onClick={() => openCheckout()}
+            onClick={openCheckout}
           >
             Take my money!
           </Button>

@@ -1,16 +1,28 @@
 @use '@zocom/styles' as *;
 
 .header {
+    color: $primaryTextLight;
     @include flex(row, space-between, center);
     padding-block: $padding;
-
+    &__left {
+        @include flex(row, flex-start, center);
+        gap: $gap-large;
+    }
     &__logo {
         @include logoSmall($logo-sml, 1);
-        background: url('./assets/logo-white.svg'), center/cover no-repeat;
+        background: url('http://localhost:5173/assets/logo-white.svg'), center / cover no-repeat;
     }
     &__cart {
         position: relative;
         isolation: isolate;
+    }
+    &__heading {
+        @include fontSizeHeadingBig;
+
+        @media screen and (max-width: 35em) {
+            line-height: 100%;
+            font-size: 35px;
+        }
     }
 }
 

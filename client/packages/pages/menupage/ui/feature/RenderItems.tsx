@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMenu } from "@zocom/menupage";
-import { Card, CardType } from "@zocom/card";
+import { Card } from "@zocom/card";
+import { CardType } from "@zocom/types"
 
 export const RenderItems = () => {
   const menuQuery = useQuery({

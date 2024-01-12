@@ -32,11 +32,25 @@ export type Order = {
   id: string;
   products: Product[];
   orderStatus: string;
-  timeStamp?: Date;
+  timeStamp?: string;
   totalPrice: number;
 };
 
 export type OrderApiResponse = {
   success: boolean;
-  order: Order;
+  order?: Order;
+  orders?: Order[];
 };
+
+export type UpdateOrder = {
+  id: string,
+  orderStatus: string,
+  timeStamp?: string
+}
+
+export enum CardType {
+  "MENU" = "menu",
+  "SAUCE" = "sauce",
+  "CART" = "cart",
+  "RECEIPT" = "receipt",
+}

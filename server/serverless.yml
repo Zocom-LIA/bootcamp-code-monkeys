@@ -3,6 +3,13 @@ frameworkVersion: "3"
 
 provider:
   name: aws
+  httpApi:
+    payload: "2.0"
+    disableDefaultEndpoint: false
+    authorizers:
+      customAuthorizer:
+        type: request
+        functionName: authorizer
   runtime: nodejs18.x
   profile: Yumyumgimmisum
   region: eu-north-1
@@ -35,12 +42,23 @@ functions:
       - httpApi:
           path: /api/orders
           method: GET
+          authorizer:
+            name: customAuthorizer
+            type: request
   getOrder:
     handler: functions/orderFunctions/getOrder/index.handler
     events:
       - httpApi:
           path: /api/order/{id}
           method: GET
+  updateOrder:
+    handler: functions/orderFunctions/updateOrder/index.handler
+    events:
+      - httpApi:
+          path: /api/order/{id}
+          method: PUT
+  authorizer:
+    handler: functions/authorizer/index.authorizer
 
 resources:
   Resources: 

@@ -15,11 +15,7 @@
   } @else if $style == "round" {
     @include button(true);
   } @else if $style == "alert" {
-    @include button(true);
     background-color: $alertBg;
-    position: absolute;
-    top: -$margin-sml;
-    right: -$margin-sml;
   } @else if $style == "dark" {
     background-color: $buttonDarkBg;
   } @else if $style == "border" {
@@ -40,6 +36,10 @@ button {
       &--cart {
         @include buttonStyles(cart, white);
       }
+      &--alert {
+        @include buttonStyles(alert, $primaryTextLight);
+        @include fontSizeBigger;
+      }
     }
     &__cart {
       &--default {
@@ -49,6 +49,10 @@ button {
       }
       &--alert {
         @include buttonStyles(alert, white);
+        @include button(true);
+        position: absolute;
+        top: -$margin-sml;
+        right: -$margin-sml;
       }
       &--dark {
         @include buttonStyles(dark, white);

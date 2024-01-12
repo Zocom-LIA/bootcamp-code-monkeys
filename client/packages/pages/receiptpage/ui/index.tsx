@@ -5,17 +5,18 @@ import { RenderItems } from "./feature/RenderItems";
 import { Header } from "@zocom/header";
 import { Button, ButtonType } from "@zocom/button";
 import { StyleTypes } from "@zocom/types";
+import { motion } from "framer-motion";
 
 export const Receiptpage = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <Header showLogo={true} />
+      <Header showLogo={true} showCart={false} />
       <main className="receipt">
-        <section className="receipt__card">
+        <motion.section className="receipt__card" initial={{ x: 100 }} animate={{ x: 0 }}>
           <RenderItems />
-        </section>
+        </motion.section>
         <Button
           type={ButtonType.CART}
           style={StyleTypes.DARK}

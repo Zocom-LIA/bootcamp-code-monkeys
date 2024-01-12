@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/staffcard",
+    "main": "./index.ts"
+}
