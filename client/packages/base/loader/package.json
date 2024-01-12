@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/loader",
+    "main": "./index.ts"
+}
