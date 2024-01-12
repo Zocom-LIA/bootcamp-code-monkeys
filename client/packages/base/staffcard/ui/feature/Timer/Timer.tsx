@@ -25,8 +25,8 @@ export const Timer = ({
     <>
       <section className="staffcard__timer">
         {status === "onGoing"
-          ? formattedTime(elapsedTime)
-          : formattedTime(time)}
+          ? "Väntat i " + formattedTime(elapsedTime)
+          : "Tillagningstid " + formattedTime(time)}
       </section>
       <Button
         onClick={() => { stopTimer(), status === "onGoing" ? onStop() : console.log("onClick didn't work") }}
