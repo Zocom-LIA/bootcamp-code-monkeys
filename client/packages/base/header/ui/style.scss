@@ -21,7 +21,7 @@
 
         @media screen and (max-width: 35em) {
             line-height: 100%;
-            font-size: 35px;
+            font-size: calc($fzBase * 2.125);
         }
     }
 }

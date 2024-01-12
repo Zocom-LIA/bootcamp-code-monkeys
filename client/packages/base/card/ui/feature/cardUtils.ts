@@ -22,7 +22,7 @@ export const useCard = () => {
   const handleRemoveFromCart = (props: Product) => {
     if ("quantity" in props && "id" in props) {
       decreaseQuantity(props);
-      props.quantity === 0 && removeFromCart(props);
+      props.quantity === 1 && removeFromCart(props);
     }
   };
 
