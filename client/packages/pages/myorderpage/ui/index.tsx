@@ -24,7 +24,7 @@ export const Myorderpage = () => {
             </section>
             <h2>{total} SEK</h2>
           </section>
-          <Button
+          <Button isDisabled={(total == 0 ? true: false)}
             type={ButtonType.CART}
             style={StyleTypes.DARK}
             onClick={openCheckout}

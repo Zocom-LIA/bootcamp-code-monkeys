@@ -1,15 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 import "./style.scss";
-import { Button, ButtonType } from "@zocom/button";
-import { WontonTypes, Product, StyleTypes } from "@zocom/types";
-import { useOrderStore } from "@zocom/orderstore";
-
-export enum CardType {
-  "MENU" = "menu",
-  "SAUCE" = "sauce",
-  "CART" = "cart",
-  "RECEIPT" = "receipt",
-}
+import { Button } from "@zocom/button";
+import { WontonTypes, Product, CardType } from "@zocom/types";
+import { useCard } from "./feature/cardUtils";
+import { AmountSwitcher } from "./feature/AmountSwitcher"
 
 type CardProps = {
   onClick?: () => void;
@@ -18,35 +12,7 @@ type CardProps = {
 };
 
 export const Card = ({ props, state }: CardProps) => {
-  const {
-    addToCart,
-    increaseQuantity,
-    decreaseQuantity,
-    removeFromCart,
-    cart,
-  } = useOrderStore();
-
-  const handleAddToCart = (props: WontonTypes | Product) => {
-    if ("id" in props) {
-      const existingItem = cart.find((cartItem) => cartItem.id === props.id);
-      existingItem
-        ? increaseQuantity(existingItem)
-        : addToCart({ ...props, quantity: 1 });
-    }
-  };
-
-  const handleRemoveFromCart = () => {
-    if ("quantity" in props && "id" in props) {
-      decreaseQuantity(props);
-      props.quantity === 0 && removeFromCart(props);
-    }
-  };
-
-  const isWontonType = (object: WontonTypes | Product): object is WontonTypes =>
-    "ingredients" in object || "sauces" in object;
-
-  const isProductType = (object: WontonTypes | Product): object is Product =>
-    "quantity" in object;
+  const { handleAddToCart, isWontonType, isProductType } = useCard();
 
   return (
     <article className="card">
@@ -80,23 +46,7 @@ export const Card = ({ props, state }: CardProps) => {
             ))
           )
         ) : state === CardType.CART ? (
-          <>
-            <Button
-              type={ButtonType.ROUND}
-              style={StyleTypes.CART}
-              onClick={() => handleAddToCart(props)}
-            >
-              +
-            </Button>
-            <p>{isProductType(props) && props.quantity} stycken</p>
-            <Button
-              type={ButtonType.ROUND}
-              style={StyleTypes.CART}
-              onClick={() => handleRemoveFromCart()}
-            >
-              -
-            </Button>
-          </>
+          <AmountSwitcher {...props} />
         ) : state === CardType.RECEIPT ? (
           <>
             <p>{isProductType(props) && props.quantity} stycken</p>

@@ -47,3 +47,10 @@ export type UpdateOrder = {
   orderStatus: string,
   timeStamp?: string
 }
+
+export enum CardType {
+  "MENU" = "menu",
+  "SAUCE" = "sauce",
+  "CART" = "cart",
+  "RECEIPT" = "receipt",
+}
