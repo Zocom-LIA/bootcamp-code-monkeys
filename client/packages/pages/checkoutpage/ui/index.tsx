@@ -6,14 +6,14 @@ import { Button, ButtonType } from "@zocom/button";
 import { Order, StyleTypes } from "@zocom/types";
 import { CountdownTimer } from "./feature/Countdown";
 import { useQuery } from "@tanstack/react-query";
-import { getOrder } from "..";
+import { getOrder, wait } from "..";
 
 export const Checkoutpage = () => {
   const navigate = useNavigate();
 
   const orderQuery = useQuery({
     queryKey: ["order"],
-    queryFn: getOrder,
+    queryFn: () => wait(2000).then(getOrder),
     refetchInterval: 1000 * 10,
   });
   orderQuery.refetch();

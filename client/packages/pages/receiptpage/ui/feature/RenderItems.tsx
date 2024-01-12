@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getOrder } from "@zocom/checkoutpage";
-import { Card, CardType } from "@zocom/card";
-import { Order } from "@zocom/types";
+import { Card } from "@zocom/card";
+import { Order, CardType } from "@zocom/types";
 
 export const RenderItems = () => {
   const orderQuery = useQuery({

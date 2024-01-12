@@ -1,5 +1,6 @@
 import { useOrderStore } from "@zocom/orderstore";
-import { Card, CardType } from "@zocom/card";
+import { Card } from "@zocom/card";
+import { CardType } from "@zocom/types"
 
 export const RenderItems = () => {
   const { cart } = useOrderStore();

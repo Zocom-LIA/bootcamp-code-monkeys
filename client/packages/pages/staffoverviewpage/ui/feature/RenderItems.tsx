@@ -1,4 +1,4 @@
-import { getAllOrders } from "@zocom/staffoverviewpage";
+import { getAllOrders, orderSorting } from "@zocom/staffoverviewpage";
 import { useQuery } from "@tanstack/react-query";
 import { StaffCard } from "@zocom/staffcard";
 
@@ -15,20 +15,7 @@ export const RenderItems = () => {
   if (orderQuery.isLoading) return <h1>Loading...</h1>;
   if (orderQuery.isError) return <pre>{JSON.stringify(orderQuery.error)}</pre>;
 
-  const ongoingOrders = orderItems.filter((item) => item.orderStatus === "onGoing");
-  const doneOrders = orderItems.filter((item) => item.orderStatus === "done");
-
-  const sortedOngoingOrders = ongoingOrders.sort((a, b) => {
-    const dateA = a.timeStamp ? new Date(a.timeStamp) : new Date(0);
-    const dateB = b.timeStamp ? new Date(b.timeStamp) : new Date(0);
-    return dateA.valueOf() - dateB.valueOf();
-  });
-
-  const sortedDoneOrders = doneOrders.sort((a, b) => {
-    const timeStampA = parseInt(a.timeStamp || "0");
-    const timeStampB = parseInt(b.timeStamp || "0");
-    return timeStampB - timeStampA;
-  });
+  const { sortedOngoingOrders, sortedDoneOrders } = orderSorting(orderItems);
 
   return (
     <>
@@ -59,5 +46,3 @@ export const RenderItems = () => {
     </>
   );
 };
-
-export default RenderItems;

@@ -14,16 +14,18 @@ type ButtonProps = {
   style?: StyleTypes;
   type?: ButtonType;
   onClick: () => void;
+  isDisabled?: boolean;
 };
 
 export const Button = ({
+  isDisabled,
   children,
   type = ButtonType.REGULAR,
   style = StyleTypes.DEFAULT,
   onClick
 }: ButtonProps) => {
   return (
-    <button className={`button__${type}--${style}`} onClick={onClick}>
+    <button disabled={isDisabled} className={`button__${type}--${style}`} onClick={onClick}>
       {children}
     </button>
   );
