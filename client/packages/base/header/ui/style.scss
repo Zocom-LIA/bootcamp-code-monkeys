@@ -18,6 +18,11 @@
     }
     &__heading {
         @include fontSizeHeadingBig;
+
+        @media screen and (max-width: 35em) {
+            line-height: 100%;
+            font-size: 35px;
+        }
     }
 }
 

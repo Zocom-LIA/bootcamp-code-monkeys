@@ -1,6 +1,7 @@
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
 
+import { Loader } from '@zocom/loader'
 import { Header } from "@zocom/header";
 import { Button, ButtonType } from "@zocom/button";
 import { Order, StyleTypes } from "@zocom/types";
@@ -18,8 +19,9 @@ export const Checkoutpage = () => {
   });
   orderQuery.refetch();
   const orderItem = orderQuery?.data?.order || [];
-  if (orderQuery.isLoading) return <h1>Loading...</h1>;
-
+  if (orderQuery.isLoading) return (
+    <Loader className="loading" spinnerProps={{ visible: true, width: "200px", color: "hsl(160, 34%, 42%)", ariaLabel: "infinity-spin-loading"}} />
+  )
   if (orderQuery.isError) return <pre>{JSON.stringify(orderQuery.error)}</pre>;
 
   const isOrderType = (object: Order | never[]): object is Order =>

@@ -13,6 +13,11 @@ body:has(.orders) {
     color: $primaryTextLight;
     @include grid(repeat(2, 1fr));
     gap: calc($gap-huge * 2);
+
+    @media screen and (max-width: 40em) {
+        grid-template-columns: 100%;
+    }
+
     h3 {
         @include fontSizeBigger;
         color: $cartBg;

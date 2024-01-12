@@ -1,0 +1,5 @@
+@use "@zocom/styles" as *;
+
+body:has(.loading) {
+    @include center;
+}
